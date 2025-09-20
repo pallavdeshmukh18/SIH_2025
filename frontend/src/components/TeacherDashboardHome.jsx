@@ -4,10 +4,17 @@ import { useNavigate } from "react-router-dom";
 import "../css/TeacherDashboardHome.css";
 
 const TeacherDashboardHome = () => {
+    const rawUsername = localStorage.getItem("username") || "Teacher";
+    const nameOnly = rawUsername.split("@")[0]; // take only 'alice'
+    const formattedName = nameOnly
+        .split(/[\._]/) // handle dots or underscores, e.g., alice.smith
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" "); // 'Alice Smith'
+
     const navigate = useNavigate();
 
     const teacher = {
-        name: localStorage.getItem("username") || "Teacher",
+        name: formattedName || "Teacher",
         id: "TCH12345",
         photo: "https://via.placeholder.com/100", // Replace with teacher profile image
         department: "Electronics & Telecommunication",
@@ -105,7 +112,7 @@ const TeacherDashboardHome = () => {
                 </ul>
             </div>
 
-            
+
             {/* Recent Announcements */}
             <div
                 className="widget recent-announcements clickable"

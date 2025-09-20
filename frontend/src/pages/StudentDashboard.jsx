@@ -36,15 +36,13 @@ import {
     FaSun
 } from "react-icons/fa";
 
-// --- Sidebar Link Component ---
+// Sidebar Link Component
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
     return (
         <NavLink
             to={to}
-            end={exact} // only use exact for routes like Dashboard
-            className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active-link" : ""}`
-            }
+            end={exact}
+            className={({ isActive }) => `sidebar-link ${isActive ? "active-link" : ""}`}
             title={isCollapsed ? label : ""}
         >
             {icon} {!isCollapsed && <span className="link-label">{label}</span>}
@@ -54,30 +52,32 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
 
 function StudentDashboard() {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [studentName, setStudentName] = useState("Student");
+    const [studentName, setStudentName] = useState(""); // empty initially
     const [darkMode, setDarkMode] = useState(false);
     const navigate = useNavigate();
 
+    // Fetch student name from backend
     useEffect(() => {
         const fetchStudentName = async () => {
             try {
                 const token = localStorage.getItem("userToken"); // your auth token
                 const res = await fetch("http://127.0.0.1:5000/api/student/profile", {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
-                if (data.status === "success") {
-                    setStudentName(data.data.name);
+                if (data.status === "success" && data.data.name) {
+                    setStudentName(data.data.name); // set the actual name
+                } else {
+                    setStudentName("Student"); // fallback
                 }
             } catch (err) {
                 console.error("Failed to fetch student name:", err);
-                setStudentName("Student"); // fallback
+                setStudentName("Student");
             }
         };
 
         fetchStudentName();
     }, []);
-
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
@@ -97,7 +97,9 @@ function StudentDashboard() {
         <div className={`student-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
             {/* Sidebar */}
             <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-                <div className="logo">{!isCollapsed && `Hello, ${studentName}!`}</div>
+                <div className="logo">
+                    {!isCollapsed && studentName ? `Welcome, ${studentName}!` : ""}
+                </div>
                 <ul>
                     <li>
                         <SidebarLink
@@ -105,7 +107,7 @@ function StudentDashboard() {
                             icon={<FaHome />}
                             label="Dashboard"
                             isCollapsed={isCollapsed}
-                            exact={true} // exact match
+                            exact={true}
                         />
                     </li>
                     <li>
