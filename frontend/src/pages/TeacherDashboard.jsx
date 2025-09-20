@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/TeacherDashboard.css";
 import ChatBotPage from "../components/ChatBotPage";
+import TeacherTimetable from "../components/TeacherTimetable";
 import {
     FaHome,
     FaCalendarAlt,
@@ -25,8 +26,8 @@ import {
 // --- Page Components ---
 import TeacherDashboardHome from "../components/TeacherDashboardHome";
 
-const Timetable = () => <h2>Your Timetable</h2>;
-const Assignments = () => <h2>Assignments</h2>;
+//const Timetable = () => <h2>Your Timetable</h2>;
+//const Assignments = () => <h2>Assignments</h2>;
 const StudyMaterials = () => <h2>Study Materials</h2>;
 const Profile = () => <h2>Profile Details</h2>;
 const Discussions = () => <h2>Discussions</h2>;
@@ -206,8 +207,8 @@ function TeacherDashboard() {
                 <div className="content">
                     <Routes>
                         <Route index element={<TeacherDashboardHome />} />
-                        <Route path="timetable" element={<Timetable />} />
-                        <Route path="assignments" element={<Assignments />} />
+                        <Route path="timetable" element={<TeacherTimetable />} />
+                        <Route path="assignments" element={<TeacherAssignments />} />
                         <Route path="study-materials" element={<StudyMaterials />} />
                         <Route path="attendance" element={<Attendance />} />
                         <Route path="examination" element={<Examination />} />

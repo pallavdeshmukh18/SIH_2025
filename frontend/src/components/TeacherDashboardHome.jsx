@@ -8,36 +8,29 @@ const TeacherDashboardHome = () => {
 
     const teacher = {
         name: localStorage.getItem("username") || "Teacher",
-        gpa: 8.7,
-        attendance: 92,
-        branch: "EXTC",
-        nextAssignment: "Math Project",
-        coursesEnrolled: 5,
-        assignmentsDue: 3,
-        hostel: {
-            name: "Tagore Hostel",
-            room: "B-203",
-            block: "Block B",
-        },
+        id: "TCH12345",
+        photo: "https://via.placeholder.com/100", // Replace with teacher profile image
+        department: "Electronics & Telecommunication",
+        subjects: ["Mathematics", "Physics", "Digital Systems"],
+        email: "teacher@example.com",
+        phone: "+91-9876543210",
+        assignedClasses: [
+            { class: "FY B.Tech A", subject: "Mathematics" },
+            { class: "SY B.Tech B", subject: "Physics" },
+        ],
         todaysClasses: [
             { time: "9:00 AM", subject: "Mathematics", room: "101" },
             { time: "11:00 AM", subject: "Physics", room: "102" },
             { time: "2:00 PM", subject: "Chemistry", room: "103" },
         ],
-        upcomingAssignments: [
-            { title: "Math Homework 5", course: "Mathematics", due: "Tomorrow" },
-            { title: "Physics Lab Report", course: "Physics", due: "In 3 days" },
-        ],
         announcements: [
             { title: "Midterm Exam Schedule", postedBy: "Admin", date: "2025-09-20" },
             { title: "Library Closed", postedBy: "Admin", date: "2025-09-19" },
         ],
-    };
-
-    const messInfo = {
-        name: "Mess 1",
-        type: "Central Mess",
-        menu: "Veg & Non-Veg",
+        events: [
+            { title: "Staff Meeting", date: "2025-09-22", time: "10:00 AM" },
+            { title: "Workshop on AI Tools", date: "2025-09-25", time: "3:00 PM" },
+        ],
     };
 
     const todayDate = new Date().toLocaleDateString("en-US", {
@@ -54,63 +47,50 @@ const TeacherDashboardHome = () => {
                 <p>{todayDate}</p>
             </div>
 
-            {/* Hostel Info */}
-            <div className="widget hostel-info">
-                <h3>Hostel Information</h3>
-                <p><strong>Name:</strong> {teacher.hostel.name}</p>
-                <p><strong>Room:</strong> {teacher.hostel.room}</p>
-                <p><strong>Block:</strong> {teacher.hostel.block}</p>
-            </div>
-
-            {/* Mess Info */}
-            <div className="widget mess-info">
-                <h3>Mess Information</h3>
-                <p><strong>Mess Name:</strong> {messInfo.name}</p>
-                <p><strong>Type:</strong> {messInfo.type}</p>
-                <p><strong>Menu:</strong> {messInfo.menu}</p>
-            </div>
-
-            {/* Quick Stats */}
-            <div className="quick-stats">
-                <div
-                    className="stats-card clickable"
-                    onClick={() => navigate("/dashboard/teacher/courses")}
-                >
-                    Courses Enrolled: {teacher.coursesEnrolled}
-                </div>
-                <div
-                    className="stats-card clickable"
-                    onClick={() => navigate("/dashboard/teacher/assignments")}
-                >
-                    Assignments Due: {teacher.assignmentsDue}
-                </div>
-                <div
-                    className="stats-card clickable"
-                    onClick={() => navigate("/dashboard/teacher/attendance")}
-                >
-                    Attendance: {teacher.attendance}%
-                </div>
-                <div className="stats-card">
-                    Branch: {teacher.branch}
+            {/* Profile Overview */}
+            <div className="widget profile-overview">
+                <h3>Profile Overview</h3>
+                <div className="profile-details">
+                    <img src="/teacher1.jpeg" alt="Teacher" className="profile-photo" />
+                    <div>
+                        <p><strong>Name:</strong> {teacher.name}</p>
+                        <p><strong>ID:</strong> {teacher.id}</p>
+                        <p><strong>Department:</strong> {teacher.department}</p>
+                        <p><strong>Subjects:</strong> {teacher.subjects.join(", ")}</p>
+                        <p><strong>Email:</strong> {teacher.email}</p>
+                        <p><strong>Phone:</strong> {teacher.phone}</p>
+                    </div>
                 </div>
             </div>
 
-            {/* Upcoming Deadlines */}
-            <div
-                className="widget upcoming-deadlines clickable"
-                onClick={() => navigate("/dashboard/teacher/assignments")}
-            >
-                <h3>Upcoming Deadlines</h3>
+            {/* Class & Subject Management */}
+            <div className="widget class-management">
+                <h3>Assigned Classes & Subjects</h3>
                 <ul>
-                    {teacher.upcomingAssignments.map((a, idx) => (
+                    {teacher.assignedClasses.map((cls, idx) => (
                         <li key={idx}>
-                            <strong>{a.title}</strong> ({a.course}) - <em>{a.due}</em>
+                            {cls.class} - {cls.subject}
                         </li>
                     ))}
                 </ul>
             </div>
 
-            {/* Today's Timetable */}
+            {/* Assignments & Exams */}
+            <div className="widget assignments-exams">
+                <h3>Assignments & Exams</h3>
+                <button onClick={() => navigate("/dashboard/teacher/assignments")}>
+                    Upload / Create Assignments
+                </button>
+                <button onClick={() => navigate("/dashboard/teacher/examination")}>
+                    Manage Exams
+                </button>
+                <button onClick={() => navigate("/dashboard/teacher/assignments")}>
+                    Track Submissions
+                </button>
+            </div>
+
+
+            {/* Timetable */}
             <div
                 className="widget todays-timetable clickable"
                 onClick={() => navigate("/dashboard/teacher/timetable")}
@@ -125,6 +105,7 @@ const TeacherDashboardHome = () => {
                 </ul>
             </div>
 
+            
             {/* Recent Announcements */}
             <div
                 className="widget recent-announcements clickable"
@@ -140,29 +121,16 @@ const TeacherDashboardHome = () => {
                 </ul>
             </div>
 
-            {/* Attendance Summary */}
-            <div
-                className="widget attendance-summary clickable"
-                onClick={() => navigate("/dashboard/teacher/attendance")}
-            >
-                <h3>Attendance Summary</h3>
-                <div className="progress-bar">
-                    <div
-                        className="progress"
-                        style={{ width: `${teacher.attendance}%` }}
-                    ></div>
-                </div>
-                <p>Overall: {teacher.attendance}%</p>
-            </div>
-
-            {/* Performance Snapshot */}
-            <div
-                className="widget performance-snapshot clickable"
-                onClick={() => navigate("/dashboard/teacher/results")}
-            >
-                <h3>Performance Snapshot</h3>
-                <p>GPA: {teacher.gpa}</p>
-                <p>Next Assignment: {teacher.nextAssignment}</p>
+            {/* Upcoming Events & Meetings */}
+            <div className="widget upcoming-events">
+                <h3>Upcoming Events / Meetings</h3>
+                <ul>
+                    {teacher.events.map((ev, idx) => (
+                        <li key={idx}>
+                            <strong>{ev.title}</strong> - {ev.date} at {ev.time}
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
