@@ -59,16 +59,25 @@ function StudentDashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedUsername = localStorage.getItem("username");
-        if (storedUsername) {
-            setStudentName(
-                storedUsername.charAt(0).toUpperCase() + storedUsername.slice(1)
-            );
-        }
+        const fetchStudentName = async () => {
+            try {
+                const token = localStorage.getItem("userToken"); // your auth token
+                const res = await fetch("http://127.0.0.1:5000/api/student/profile", {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const data = await res.json();
+                if (data.status === "success") {
+                    setStudentName(data.data.name);
+                }
+            } catch (err) {
+                console.error("Failed to fetch student name:", err);
+                setStudentName("Student"); // fallback
+            }
+        };
 
-        const storedTheme = localStorage.getItem("theme");
-        if (storedTheme) setDarkMode(storedTheme === "dark");
+        fetchStudentName();
     }, []);
+
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
