@@ -3,6 +3,14 @@ import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/TeacherDashboard.css";
 import ChatBotPage from "../components/ChatBotPage";
 import TeacherTimetable from "../components/TeacherTimetable";
+import TeacherAssignments from "../components/TeacherAssignments";
+import TeacherStudyMaterial from "../components/TeacherStudyMaterial";
+import TeacherAttendance from "../components/TeacherAttendance";
+import Salary from "../components/Salary";
+import DiscussionsPage from "../components/DiscussionsPage";
+import TeacherAnnouncements from "../components/TeacherAnnouncements";
+import TeacherProfile from "../components/TeacherProfile";
+
 import {
     FaHome,
     FaCalendarAlt,
@@ -28,12 +36,12 @@ import TeacherDashboardHome from "../components/TeacherDashboardHome";
 
 //const Timetable = () => <h2>Your Timetable</h2>;
 //const Assignments = () => <h2>Assignments</h2>;
-const StudyMaterials = () => <h2>Study Materials</h2>;
-const Profile = () => <h2>Profile Details</h2>;
-const Discussions = () => <h2>Discussions</h2>;
-const Attendance = () => <h2>Your Attendance</h2>;
-const Announcements = () => <h2>Announcements</h2>;
-const Salary = () => <h2>Salary Details</h2>;
+//const StudyMaterials = () => <h2>Study Materials</h2>;
+//const Profile = () => <h2>Profile Details</h2>;
+//const Discussions = () => <h2>Discussions</h2>;
+//const Attendance = () => <h2>Your Attendance</h2>;
+//const Announcements = () => <h2>Announcements</h2>;
+//const Salary = () => <h2>Salary Details</h2>;
 const Examination = () => <h2>Examination Details</h2>;
 
 // --- Sidebar Link Component ---
@@ -209,14 +217,14 @@ function TeacherDashboard() {
                         <Route index element={<TeacherDashboardHome />} />
                         <Route path="timetable" element={<TeacherTimetable />} />
                         <Route path="assignments" element={<TeacherAssignments />} />
-                        <Route path="study-materials" element={<StudyMaterials />} />
-                        <Route path="attendance" element={<Attendance />} />
+                        <Route path="study-materials" element={<TeacherStudyMaterial />} />
+                        <Route path="attendance" element={<TeacherAttendance />} />
                         <Route path="examination" element={<Examination />} />
                         <Route path="salary" element={<Salary />} />
-                        <Route path="discussions" element={<Discussions />} />
+                        <Route path="discussions" element={<DiscussionsPage />} />
                         <Route path="chatbot" element={<ChatBotPage />} />
-                        <Route path="announcements" element={<Announcements />} />
-                        <Route path="profile" element={<Profile />} />
+                        <Route path="announcements" element={<TeacherAnnouncements />} />
+                        <Route path="profile" element={<TeacherProfile/>} />
                     </Routes>
                 </div>
             </div>
