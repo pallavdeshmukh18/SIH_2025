@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
+import ChatBotPage from "../components/ChatBotPage";
 import {
     FaHome,
     FaBook,
@@ -35,7 +36,6 @@ const Discussions = () => <h2>Discussions</h2>;
 const Attendance = () => <h2>Your Attendance</h2>;
 const Fees = () => <h2>Fee Payment</h2>;
 const Announcements = () => <h2>Announcements</h2>;
-const ChatBot = () => <h2>Chat Bot</h2>;
 
 // --- Sidebar Link Component ---
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
@@ -234,7 +234,7 @@ function StudentDashboard() {
                         <Route path="attendance" element={<Attendance />} />
                         <Route path="fees" element={<Fees />} />
                         <Route path="announcements" element={<Announcements />} />
-                        <Route path="chatbot" element={<ChatBot />} />
+                        <Route path="chatbot" element={<ChatBotPage />} />
                         <Route path="profile" element={<Profile />} />
                     </Routes>
                 </div>
