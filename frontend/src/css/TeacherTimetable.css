@@ -1,9 +1,9 @@
-.student-timetable-page {
+.teacher-timetable-page {
     padding: 1.5rem;
     font-family: 'Poppins', sans-serif;
 }
 
-.student-timetable-page h2 {
+.teacher-timetable-page h2 {
     text-align: center;
     margin-bottom: 1.5rem;
 }
@@ -30,19 +30,16 @@
 
 .timetable-grid .day-col {
     font-weight: bold;
-    background: #ccc;
+    background: #f1f1f1;
 }
 
 .timetable-grid td {
     min-width: 120px;
 }
-
-.timetable-grid tr:nth-child(even) {
-    background-color: #ccc;
-}
-
-
 .timetable-grid tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+.timetable-grid tr:nth-child(even) {
     background-color: #fafafa;
 }
 

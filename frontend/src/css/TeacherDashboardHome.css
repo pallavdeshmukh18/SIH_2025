@@ -1,250 +1,154 @@
-/* --- src/css/TeacherDashboardHome.css --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* src/css/TeacherDashboardHome.css */
 
-/* --- Main Dashboard Container & Grid Layout --- */
+/* Overall Dashboard Layout */
 .dashboard-home {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    padding: 1.5rem;
-    display: grid;
-    /* Using a 4-column grid for better flexibility on larger screens */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    animation: fadeIn 0.5s ease-in-out;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9fafc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- Grid Item Spanning --- */
-.welcome-banner,
-.quick-stats {
-    grid-column: 1 / -1;
-    /* Span all 4 columns */
-}
-
-/* Key info widgets take up half the width on large screens */
-.hostel-info,
-.mess-info,
-.upcoming-deadlines,
-.todays-timetable {
-    grid-column: span 2;
-}
-
-/* Smaller widgets can be adjusted as needed, here they take up a quarter */
-.recent-announcements,
-.attendance-summary,
-.performance-snapshot {
-    grid-column: span 2;
-}
-
-
-/* --- Welcome Banner --- */
+/* Welcome Banner */
 .welcome-banner {
-    background: linear-gradient(135deg, #4a90e2, #50e3c2);
-    color: #fff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .welcome-banner h2 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
+  margin: 0 0 5px;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .welcome-banner p {
-    margin: 0.25rem 0 0;
-    font-size: 1rem;
-    opacity: 0.9;
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
-/* --- Quick Stats Cards --- */
-.quick-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-}
-
-.stats-card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-left: 4px solid #4a90e2;
-}
-
-.stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* --- General Widget Styling --- */
+/* Widget Container */
 .widget {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .widget h3 {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
 }
 
 .widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.widget ul li {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 0.95rem;
+.widget li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
 }
 
-.widget ul li:last-child {
-    border-bottom: none;
-}
-
-.widget ul li strong {
-    color: #2563eb;
-}
-
-.widget ul li em {
-    color: #555;
-    font-style: normal;
-}
-
-/* --- Styling for NEW Hostel & Mess Info Widgets --- */
-.hostel-info h3::before,
-.mess-info h3::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 0.75rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* SVG icons embedded as data URLs for simplicity */
-.hostel-info h3::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z'/%3E%3C/svg%3E");
-}
-
-.mess-info h3::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z'/%3E%3C/svg%3E");
-}
-
-.hostel-info p,
-.mess-info p {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    margin: 0;
-    font-size: 0.95rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.hostel-info p:last-of-type,
-.mess-info p:last-of-type {
-    border-bottom: none;
-}
-
-/* --- Attendance Progress Bar --- */
-.attendance-summary .progress-bar {
-    background-color: #e9ecef;
-    border-radius: 20px;
-    height: 12px;
-    overflow: hidden;
-    margin: 1rem 0;
-}
-
-.attendance-summary .progress {
-    height: 100%;
-    background: linear-gradient(90deg, #28a745, #21e6c1);
-    border-radius: 20px;
-    transition: width 0.5s ease-in-out;
-}
-
-/* --- Responsive Design --- */
-/* For medium desktops and large tablets */
-@media (max-width: 1200px) {
-    .dashboard-home {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Make all widgets span full width in 2-column layout */
-    .hostel-info,
-    .mess-info,
-    .upcoming-deadlines,
-    .todays-timetable,
-    .recent-announcements,
-    .attendance-summary,
-    .performance-snapshot {
-        grid-column: span 2;
-    }
-}
-
-/* For small tablets and mobile phones */
-@media (max-width: 768px) {
-    .dashboard-home {
-        grid-template-columns: 1fr;
-        /* Single column layout */
-        padding: 1rem;
-        gap: 1rem;
-    }
-
-    /* Reset all spans for single column flow */
-    .welcome-banner,
-    .quick-stats,
-    .hostel-info,
-    .mess-info,
-    .upcoming-deadlines,
-    .todays-timetable,
-    .recent-announcements,
-    .attendance-summary,
-    .performance-snapshot {
-        grid-column: auto;
-    }
-
-    .welcome-banner h2 {
-        font-size: 1.5rem;
-    }
+.widget li:last-child {
+  border-bottom: none;
 }
 
 .clickable {
-    cursor: pointer;
-    transition: all 0.2s;
+  cursor: pointer;
 }
 
 .clickable:hover {
-    background-color: #d8d8d9;
-    transform: translateY(-2px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Profile Overview */
+.profile-overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #4e73df;
+  object-fit: cover;
+}
+
+.profile-details p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Class Management */
+.class-management ul li {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Timetable */
+
+.todays-timetable {
+  grid-column: 1 / -1;   /* full width */
+  grid-row: span 2;      /* occupy its row + the next one */
+}
+
+/* Assignments & Exams */
+.assignments-exams button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: #4e73df;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.assignments-exams button:hover {
+  background: #2e59d9;
+}
+
+/* Recent Announcements */
+.recent-announcements li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.recent-announcements em {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* Upcoming Events */
+.upcoming-events li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.upcoming-events strong {
+  color: #1cc88a;
 }
