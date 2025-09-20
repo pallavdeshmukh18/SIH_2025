@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
+import StudentDashboardHome from "../components/StudentDashboardHome";
 import ChatBotPage from "../components/ChatBotPage";
+import AttendancePage from "../components/AttendancePage";
+import DiscussionsPage from "../components/DiscussionsPage";
+import StudentCourses from "../components/StudentCourses";
+import StudentTimetable from "../components/StudentTimetable";
+import StudentAssignments from "../components/StudentAssignments";
+import StudentStudyMaterial from "../components/StudentStudyMaterial";
+import StudentResult from "../components/StudentResult";
+import MCQs from "../components/MCQs";
+import Fees from "../components/Fees";
+import StudentAnnouncements from "../components/StudentAnnouncements";
+import StudentProfile from "../components/StudentProfile";
+
 import {
     FaHome,
     FaBook,
@@ -21,21 +34,6 @@ import {
     FaMoon,
     FaSun
 } from "react-icons/fa";
-
-// --- Page Components ---
-import StudentDashboardHome from "../components/StudentDashboardHome";
-
-const Courses = () => <h2>Your Courses</h2>;
-const Timetable = () => <h2>Your Timetable</h2>;
-const Assignments = () => <h2>Assignments</h2>;
-const StudyMaterials = () => <h2>Study Materials</h2>;
-const Profile = () => <h2>Profile Details</h2>;
-const Results = () => <h2>Your Results</h2>;
-const MCQs = () => <h2>Upcoming Tests</h2>;
-const Discussions = () => <h2>Discussions</h2>;
-const Attendance = () => <h2>Your Attendance</h2>;
-const Fees = () => <h2>Fee Payment</h2>;
-const Announcements = () => <h2>Announcements</h2>;
 
 // --- Sidebar Link Component ---
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
@@ -224,18 +222,18 @@ function StudentDashboard() {
                 <div className="content">
                     <Routes>
                         <Route index element={<StudentDashboardHome />} />
-                        <Route path="courses" element={<Courses />} />
-                        <Route path="timetable" element={<Timetable />} />
-                        <Route path="assignments" element={<Assignments />} />
-                        <Route path="study-materials" element={<StudyMaterials />} />
-                        <Route path="results" element={<Results />} />
+                        <Route path="courses" element={<StudentCourses />} />
+                        <Route path="timetable" element={<StudentTimetable />} />
+                        <Route path="assignments" element={<StudentAssignments />} />
+                        <Route path="study-materials" element={<StudentStudyMaterial />} />
+                        <Route path="results" element={<StudentResult />} />
                         <Route path="mcqs" element={<MCQs />} />
-                        <Route path="discussions" element={<Discussions />} />
-                        <Route path="attendance" element={<Attendance />} />
+                        <Route path="discussions" element={<DiscussionsPage />} />
+                        <Route path="attendance" element={<AttendancePage />} />
                         <Route path="fees" element={<Fees />} />
-                        <Route path="announcements" element={<Announcements />} />
+                        <Route path="announcements" element={<StudentAnnouncements />} />
                         <Route path="chatbot" element={<ChatBotPage />} />
-                        <Route path="profile" element={<Profile />} />
+                        <Route path="profile" element={<StudentProfile />} />
                     </Routes>
                 </div>
             </div>

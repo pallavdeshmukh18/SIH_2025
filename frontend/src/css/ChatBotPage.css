@@ -1,4 +1,6 @@
 /* Add this new class to your existing CSS file */
+/* --- You should already have these styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .input-group {
     display: flex;
@@ -12,8 +14,6 @@
     /* Adds space below the button */
 }
 
-/* --- You should already have these styles --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .chatbot-page {
     display: flex;
