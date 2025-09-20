@@ -13,17 +13,28 @@ import {
     FaBell,
     FaSignOutAlt,
     FaBars,
+    FaQuestionCircle,
+    FaComments,
+    FaUserCheck,
+    FaRobot,
+    FaBookOpen
 } from "react-icons/fa";
 
 // --- Page Components ---
-const DashboardHome = () => <h2>Welcome to your Dashboard</h2>;
+import StudentDashboardHome from "../components/StudentDashboardHome"; // import correctly
+
 const Courses = () => <h2>Your Courses</h2>;
 const Timetable = () => <h2>Your Timetable</h2>;
 const Assignments = () => <h2>Assignments</h2>;
+const StudyMaterials = () => <h2>Study Materials</h2>;
 const Profile = () => <h2>Profile Details</h2>;
 const Results = () => <h2>Your Results</h2>;
+const MCQs = () => <h2>Upcoming Tests</h2>;
+const Discussions = () => <h2>Discussions</h2>;
+const Attendance = () => <h2>Your Attendance</h2>;
 const Fees = () => <h2>Fee Payment</h2>;
 const Announcements = () => <h2>Announcements</h2>;
+const ChatBot = () => <h2>Chat Bot</h2>;
 
 // --- Sidebar Link Component ---
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
@@ -105,6 +116,14 @@ function StudentDashboard() {
                     </li>
                     <li>
                         <SidebarLink
+                            to="/dashboard/student/study-materials"
+                            icon={<FaBookOpen />}
+                            label="Study Materials"
+                            isCollapsed={isCollapsed}
+                        />
+                    </li>
+                    <li>
+                        <SidebarLink
                             to="/dashboard/student/results"
                             icon={<FaChartBar />}
                             label="Results"
@@ -113,9 +132,41 @@ function StudentDashboard() {
                     </li>
                     <li>
                         <SidebarLink
+                            to="/dashboard/student/attendance"
+                            icon={<FaUserCheck />}
+                            label="Attendance"
+                            isCollapsed={isCollapsed}
+                        />
+                    </li>
+                    <li>
+                        <SidebarLink
+                            to="/dashboard/student/mcqs"
+                            icon={<FaQuestionCircle />}
+                            label="MCQs"
+                            isCollapsed={isCollapsed}
+                        />
+                    </li>
+                    <li>
+                        <SidebarLink
+                            to="/dashboard/student/discussions"
+                            icon={<FaComments />}
+                            label="Discussions"
+                            isCollapsed={isCollapsed}
+                        />
+                    </li>
+                    <li>
+                        <SidebarLink
                             to="/dashboard/student/fees"
                             icon={<FaMoneyBill />}
                             label="Fees"
+                            isCollapsed={isCollapsed}
+                        />
+                    </li>
+                    <li>
+                        <SidebarLink
+                            to="/dashboard/student/chatbot"
+                            icon={<FaRobot />}
+                            label="Chat Bot"
                             isCollapsed={isCollapsed}
                         />
                     </li>
@@ -158,13 +209,19 @@ function StudentDashboard() {
 
                 <div className="content">
                     <Routes>
-                        <Route index element={<DashboardHome />} />
+                        {/* Use the separate StudentDashboardHome component directly */}
+                        <Route index element={<StudentDashboardHome />} />
                         <Route path="courses" element={<Courses />} />
                         <Route path="timetable" element={<Timetable />} />
                         <Route path="assignments" element={<Assignments />} />
+                        <Route path="study-materials" element={<StudyMaterials />} />
                         <Route path="results" element={<Results />} />
+                        <Route path="mcqs" element={<MCQs />} />
+                        <Route path="discussions" element={<Discussions />} />
+                        <Route path="attendance" element={<Attendance />} />
                         <Route path="fees" element={<Fees />} />
                         <Route path="announcements" element={<Announcements />} />
+                        <Route path="chatbot" element={<ChatBot />} />
                         <Route path="profile" element={<Profile />} />
                     </Routes>
                 </div>
