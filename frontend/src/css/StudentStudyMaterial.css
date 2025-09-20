@@ -1,0 +1,42 @@
+.student-materials-page {
+    padding: 1rem;
+}
+
+.materials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.material-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.material-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.material-info p {
+    margin: 0.3rem 0;
+}
+
+.material-actions .view-btn {
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.material-actions .view-btn:hover {
+    background: #0056b3;
+}

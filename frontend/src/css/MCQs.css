@@ -1,0 +1,99 @@
+.student-mcqs-page {
+    padding: 1rem;
+}
+
+.mcqs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mcq-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    background: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mcq-info h3 {
+    margin: 0;
+    color: #007bff;
+}
+
+.mcq-info p {
+    margin: 0.2rem 0;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.completed {
+    color: green;
+}
+
+.status.pending {
+    color: orange;
+}
+
+.start-btn {
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background: #0056b3;
+}
+
+.completed-btn {
+    background: gray;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: not-allowed;
+}
+
+.test-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.question-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+}
+
+.options label {
+    display: block;
+    margin: 0.3rem 0;
+    cursor: pointer;
+}
+
+.submit-test-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.submit-test-btn:hover {
+    background: #1e7e34;
+}
