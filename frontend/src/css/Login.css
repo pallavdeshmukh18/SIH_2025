@@ -83,10 +83,20 @@ video {
 video.fade-out {
     opacity: 0;
 }
+.relative img {
+  transition: opacity 0.2s ease;
+}
+.relative img:hover {
+  opacity: 0.8;
+}
 button:hover {
   opacity: 0.9;
 }
-
+.custom1{
+  margin-top: 0.5rem;
+  position: relative;
+  justify-self: right;
+}
 .bg-black { background-color: #000000; }
 .text-white { color: #ffffff; }
 
@@ -119,10 +129,3 @@ img { display: block; }
 .object-cover { object-fit: cover; }
 
 
-.background1{
-    width: "35%"; 
-    height: "100%"; 
-    object-Fit: "cover";
-    position: "relative";
-    top: "50px";
-}
