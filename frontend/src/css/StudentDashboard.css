@@ -1,0 +1,212 @@
+/* --- Import Google Font (Already done in index.html) --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables for Easy Theming --- */
+:root {
+    --primary-color: #4f46e5;
+    /* A modern indigo */
+    --primary-color-light: #e0e7ff;
+    /* Lighter shade for hover backgrounds */
+    --sidebar-bg: #111827;
+    /* A deeper, richer dark */
+    --sidebar-text: #d1d5db;
+    /* Soft gray for text */
+    --sidebar-text-hover: #ffffff;
+    --sidebar-bg-hover: #1f2937;
+    --main-bg: #f9fafb;
+    /* Very light gray for the main area */
+    --content-bg: #ffffff;
+    --text-dark: #111827;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* --- Global Resets & Body --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+}
+
+/* --- Main Dashboard Layout --- */
+.student-dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: width var(--transition-speed) ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 10;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--sidebar-text-hover);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 1rem 0.75rem;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar ul li a,
+.sidebar ul li button.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    background: none;
+    font-size: 0.95rem;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li button.logout-btn:hover {
+    background-color: var(--sidebar-bg-hover);
+    color: var(--sidebar-text-hover);
+}
+
+.sidebar ul li a.active-link {
+    background-color: var(--primary-color);
+    color: var(--sidebar-text-hover);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+.link-label {
+    white-space: nowrap;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .link-label {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.sidebar.collapsed ul li a,
+.sidebar.collapsed ul li button.logout-btn {
+    justify-content: center;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    flex-grow: 1;
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* --- Topbar --- */
+.topbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--content-bg);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.topbar h1 {
+    margin: 0 0 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.menu-btn {
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.menu-btn:hover {
+    background-color: #f3f4f6;
+    /* light gray */
+}
+
+/* --- Main Content Wrapper --- */
+.content {
+    padding: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* A nice card style for your content pages */
+.content-card {
+    background-color: var(--content-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+/* --- Custom Scrollbar (for a polished look) --- */
+.sidebar ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar ul::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    /* medium gray */
+    border-radius: 10px;
+}
+
+.sidebar ul::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+    /* light gray */
+}

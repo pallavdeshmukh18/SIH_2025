@@ -4,50 +4,73 @@ import "../css/Login.css";
 
 function Login() {
     const navigate = useNavigate();
-    const [role, setRole] = useState(""); // Student, Teacher, Admin
+    const [role, setRole] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    // New state for handling login errors on the UI
+    const [error, setError] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError(""); // Reset error message on new submission
 
-        // Hardcoded login check based on role + username + password
+        let loginSuccess = false;
+        let dashboardPath = "";
+
+        // --- Mock Authentication Logic ---
+        // In a real app, this would be an API call.
         if (role === "student" && username === "student" && password === "student") {
-            navigate("/dashboard/student");
+            loginSuccess = true;
+            dashboardPath = "/dashboard/student";
         } else if (role === "teacher" && username === "teacher" && password === "teacher") {
-            navigate("/dashboard/teacher");
+            loginSuccess = true;
+            dashboardPath = "/dashboard/teacher";
         } else if (role === "admin" && username === "admin" && password === "admin") {
-            navigate("/dashboard/admin");
+            loginSuccess = true;
+            dashboardPath = "/dashboard/admin";
+        }
+
+        // --- Handle Login Result ---
+        if (loginSuccess) {
+            // **THE MOST IMPORTANT CHANGE IS HERE**
+            // On successful login, we store a dummy token in localStorage.
+            // Your ProtectedRoute component will check for this item.
+            localStorage.setItem('userToken', 'a_dummy_auth_token_for_now');
+
+            // We can also store user info for use in the dashboard
+            localStorage.setItem('userRole', role);
+            localStorage.setItem('username', username);
+
+            navigate(dashboardPath);
         } else {
-            alert("Invalid credentials or role");
+            // If login fails, set an error message instead of using alert().
+            setError("Invalid credentials or role selected. Please try again.");
         }
     };
 
     return (
         <div className="login-page">
-            {/* Left side */}
             <div className="login-left">
-                <h1>Welcome to SIH Project</h1>
-                <p>Manage your tasks and dashboards efficiently.</p>
+
+                <h1>School ERP Portal</h1>
+                <p>Efficiently manage your academic journey.</p>
             </div>
 
-            {/* Right side */}
             <div className="login-right">
                 <div className="login-container">
                     <h2>Login</h2>
 
-                    {/* Role selection */}
                     <div className="role-select">
-                        <label>Select Role:</label>
+                        <label>I am a:</label>
                         <select value={role} onChange={(e) => setRole(e.target.value)} required>
-                            <option value="">-- Select --</option>
+                            <option value="" disabled>-- Select Role --</option>
                             <option value="student">Student</option>
                             <option value="teacher">Teacher</option>
                             <option value="admin">Admin</option>
                         </select>
                     </div>
 
-                    {/* Login form */}
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"
@@ -63,6 +86,10 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+
+                        {/* Display error message if it exists */}
+                        {error && <p className="login-error">{error}</p>}
+
                         <button type="submit">Login</button>
                     </form>
                 </div>
