@@ -41,6 +41,11 @@
     background-color: #ccc;
 }
 
+
+.timetable-grid tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
 .room {
     color: #555;
     font-size: 0.8rem;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
+
 import StudentDashboardHome from "../components/StudentDashboardHome";
 import ChatBotPage from "../components/ChatBotPage";
 import AttendancePage from "../components/AttendancePage";
@@ -40,9 +41,9 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
     return (
         <NavLink
             to={to}
-            end={exact}
+            end={exact} // only use exact for routes like Dashboard
             className={({ isActive }) =>
-                isActive ? "active-link" : "sidebar-link"
+                `sidebar-link ${isActive ? "active-link" : ""}`
             }
             title={isCollapsed ? label : ""}
         >
@@ -95,7 +96,7 @@ function StudentDashboard() {
                             icon={<FaHome />}
                             label="Dashboard"
                             isCollapsed={isCollapsed}
-                            exact
+                            exact={true} // exact match
                         />
                     </li>
                     <li>
@@ -213,7 +214,6 @@ function StudentDashboard() {
                         <FaBars />
                     </button>
                     <h1>Student Portal</h1>
-                    {/* Dark/Light Mode Toggle */}
                     <button className="theme-btn" onClick={toggleTheme}>
                         {darkMode ? <FaSun /> : <FaMoon />}
                     </button>
