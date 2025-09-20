@@ -1,9 +1,8 @@
 /* --- Import Google Font --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* --- 🎨 CSS Variables for Theming --- */
+/* --- CSS Variables for Theming --- */
 :root {
-    /* "Minimalist Chic" Light Theme */
     --primary-color: #5C707F;
     --primary-color-light: #DDE2E5;
     --sidebar-bg: #5C707F;
@@ -22,7 +21,6 @@
 }
 
 .dark-mode {
-    /* "Deep Sea Twilight" Dark Theme */
     --primary-color: #B4C0C9;
     --primary-color-light: #334155;
     --sidebar-bg: #0F161B;
@@ -39,7 +37,7 @@
     --scroll-thumb: #475569;
 }
 
-/* --- Global Resets & Body --- */
+/* --- Global Reset --- */
 * {
     margin: 0;
     padding: 0;
@@ -48,21 +46,18 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     background-color: var(--main-bg);
     color: var(--text-dark);
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* --- Main Dashboard Layout --- */
+/* --- Layout --- */
 .student-dashboard {
     display: flex;
     height: 100vh;
     overflow: hidden;
 }
 
-/* --- Sidebar --- */
 .sidebar {
     width: 240px;
     background-color: var(--sidebar-bg);
@@ -146,35 +141,28 @@ body {
 .sidebar.collapsed ul li a,
 .sidebar.collapsed ul li button.logout-btn {
     justify-content: center;
+    padding: 1rem 0;
 }
 
-/* --- Main Content Area --- */
+/* --- Main Content --- */
 .main-content {
     flex-grow: 1;
-    background-color: var(--main-bg);
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: var(--main-bg);
     transition: background-color var(--transition-speed) ease;
 }
 
-/* --- Topbar --- */
 .topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Ensures space between items */
     background-color: var(--content-bg);
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
     transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
-}
-
-.topbar-left-content {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
 
 .topbar h1 {
@@ -205,14 +193,12 @@ body {
     color: var(--primary-color);
 }
 
-/* --- Main Content Wrapper --- */
 .content {
     padding: 2rem;
     overflow-y: auto;
     flex-grow: 1;
 }
 
-/* A nice card style for your content pages */
 .content-card {
     background-color: var(--content-bg);
     padding: 1.5rem;
@@ -221,7 +207,7 @@ body {
     transition: background-color var(--transition-speed) ease;
 }
 
-/* --- Custom Scrollbar --- */
+/* --- Scrollbar --- */
 .sidebar ul::-webkit-scrollbar {
     width: 6px;
 }
@@ -237,4 +223,18 @@ body {
 
 .sidebar ul::-webkit-scrollbar-thumb:hover {
     background: var(--text-light);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        left: -240px;
+        z-index: 100;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.collapsed {
+        left: 0;
+    }
 }
