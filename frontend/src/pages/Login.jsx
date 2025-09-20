@@ -8,18 +8,16 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    // New state for handling login errors on the UI
     const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError(""); // Reset error message on new submission
+        setError(""); 
 
         let loginSuccess = false;
         let dashboardPath = "";
 
-        // --- Mock Authentication Logic ---
-        // In a real app, this would be an API call.
+        
         if (role === "student" && username === "student" && password === "student") {
             loginSuccess = true;
             dashboardPath = "/dashboard/student";
