@@ -1,0 +1,154 @@
+/* src/css/TeacherDashboardHome.css */
+
+/* Overall Dashboard Layout */
+.dashboard-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9fafc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.welcome-banner h2 {
+  margin: 0 0 5px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.welcome-banner p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Widget Container */
+.widget {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget h3 {
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.widget li:last-child {
+  border-bottom: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Profile Overview */
+.profile-overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #4e73df;
+  object-fit: cover;
+}
+
+.profile-details p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Class Management */
+.class-management ul li {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Timetable */
+
+.todays-timetable {
+  grid-column: 1 / -1;   /* full width */
+  grid-row: span 2;      /* occupy its row + the next one */
+}
+
+/* Assignments & Exams */
+.assignments-exams button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: #4e73df;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.assignments-exams button:hover {
+  background: #2e59d9;
+}
+
+/* Recent Announcements */
+.recent-announcements li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.recent-announcements em {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* Upcoming Events */
+.upcoming-events li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.upcoming-events strong {
+  color: #1cc88a;
+}

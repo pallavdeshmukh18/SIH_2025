@@ -1,0 +1,240 @@
+/* --- Import Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- 🎨 CSS Variables for Theming --- */
+:root {
+    /* "Minimalist Chic" Light Theme */
+    --primary-color: #5C707F;
+    --primary-color-light: #DDE2E5;
+    --sidebar-bg: #5C707F;
+    --sidebar-text: #F4F7F9;
+    --sidebar-text-hover: #FFFFFF;
+    --sidebar-bg-hover: #8DA0AE;
+    --main-bg: #F4F7F9;
+    --content-bg: #FFFFFF;
+    --text-dark: #5C707F;
+    --text-light: #8DA0AE;
+    --border-color: #DDE2E5;
+    --shadow-sm: 0 1px 2px 0 rgb(92 112 127 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(92 112 127 / 0.1), 0 2px 4px -2px rgb(92 112 127 / 0.1);
+    --scroll-thumb: #B4C0C9;
+    --transition-speed: 0.3s;
+}
+
+.dark-mode {
+    /* "Deep Sea Twilight" Dark Theme */
+    --primary-color: #B4C0C9;
+    --primary-color-light: #334155;
+    --sidebar-bg: #0F161B;
+    --sidebar-text: #B4C0C9;
+    --sidebar-text-hover: #FFFFFF;
+    --sidebar-bg-hover: #1E293B;
+    --main-bg: #0F161B;
+    --content-bg: #1E293B;
+    --text-dark: #DDE2E5;
+    --text-light: #B4C0C9;
+    --border-color: #334155;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --scroll-thumb: #475569;
+}
+
+/* --- Global Resets & Body --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* --- Main Dashboard Layout --- */
+.teacher-dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 10;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--sidebar-text-hover);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 1rem 0.75rem;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar ul li a,
+.sidebar ul li button.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    background: none;
+    font-size: 0.95rem;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li button.logout-btn:hover {
+    background-color: var(--sidebar-bg-hover);
+    color: var(--sidebar-text-hover);
+}
+
+.sidebar ul li a.active-link {
+    background-color: var(--primary-color);
+    color: var(--sidebar-text-hover);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+.link-label {
+    white-space: nowrap;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .link-label {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.sidebar.collapsed ul li a,
+.sidebar.collapsed ul li button.logout-btn {
+    justify-content: center;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    flex-grow: 1;
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* --- Topbar --- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Ensures space between items */
+    background-color: var(--content-bg);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.topbar-left-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.menu-btn,
+.theme-btn {
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu-btn:hover,
+.theme-btn:hover {
+    background-color: var(--primary-color-light);
+    color: var(--primary-color);
+}
+
+/* --- Main Content Wrapper --- */
+.content {
+    padding: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* A nice card style for your content pages */
+.content-card {
+    background-color: var(--content-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* --- Custom Scrollbar --- */
+.sidebar ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar ul::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb);
+    border-radius: 10px;
+}
+
+.sidebar ul::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
+}

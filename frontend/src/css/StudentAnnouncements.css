@@ -1,0 +1,32 @@
+.student-announcements-page {
+    padding: 1rem;
+}
+
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.announcement-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-card h3 {
+    margin: 0;
+    color: #007bff;
+}
+
+.announcement-date {
+    font-size: 0.85rem;
+    color: gray;
+    margin-bottom: 0.5rem;
+}
+
+.announcement-card p {
+    margin: 0.3rem 0;
+}

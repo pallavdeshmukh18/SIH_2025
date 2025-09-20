@@ -1,0 +1,59 @@
+.student-fees-page {
+    padding: 1rem;
+}
+
+.fees-summary {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.fees-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.fee-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fee-info h3 {
+    margin: 0;
+    color: #007bff;
+}
+
+.fee-info p {
+    margin: 0.2rem 0;
+}
+
+.paid {
+    color: green;
+    font-weight: bold;
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.pay-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pay-btn:hover {
+    background: #0056b3;
+}

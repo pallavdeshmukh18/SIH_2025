@@ -1,0 +1,47 @@
+.student-timetable-page {
+    padding: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.student-timetable-page h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.timetable-grid {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.timetable-grid th,
+.timetable-grid td {
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+    vertical-align: top;
+}
+
+.timetable-grid th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+}
+
+.timetable-grid .day-col {
+    font-weight: bold;
+    background: #ccc;
+}
+
+.timetable-grid td {
+    min-width: 120px;
+}
+
+.timetable-grid tr:nth-child(even) {
+    background-color: #ccc;
+}
+
+.room {
+    color: #555;
+    font-size: 0.8rem;
+}
