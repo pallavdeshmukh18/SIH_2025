@@ -6,13 +6,16 @@ import bcrypt
 app = Flask(__name__)
 CORS(app)
 
-# Connect to your database
-conn = psycopg2.connect(
-    host="localhost",
-    database="sih_db",
-    user="postgres",
-    password="SIHACKATHON"
-)
+# Function to create a fresh DB connection per request
+
+
+def get_connection():
+    return psycopg2.connect(
+        host="192.168.1.40",  # replace with your friend's server IP or hostname
+        database="sih_db",
+        user="postgres",
+        password="SIHACKATHON"
+    )
 
 
 @app.route("/login", methods=["POST"])
@@ -34,13 +37,14 @@ def login():
         return jsonify({"status": "fail", "message": "Invalid role"}), 400
 
     try:
-        # Use a fresh cursor for each request
+        conn = get_connection()
         with conn.cursor() as cur:
             cur.execute(
                 f"SELECT password, name FROM {table} WHERE email = %s", (email,))
             result = cur.fetchone()
+        conn.close()
     except Exception as e:
-        # Catch DB errors
+        # If query fails, return error
         return jsonify({"status": "fail", "message": str(e)}), 500
 
     if not result:
@@ -48,8 +52,12 @@ def login():
 
     hashed_password, name = result
 
-    # Check bcrypt password
-    if bcrypt.checkpw(password.encode(), hashed_password.encode()):
+    # Ensure hashed_password is bytes
+    if isinstance(hashed_password, str):
+        hashed_password = hashed_password.encode()
+
+    # Check password with bcrypt
+    if bcrypt.checkpw(password.encode(), hashed_password):
         return jsonify({"status": "success", "name": name})
     else:
         return jsonify({"status": "fail", "message": "Wrong password"}), 401
