@@ -17,8 +17,7 @@ function Login() {
         let loginSuccess = false;
         let dashboardPath = "";
 
-        // --- Mock Authentication Logic ---
-        // In a real app, this would be an API call.
+        
         if (role === "student" && username === "student" && password === "student") {
             loginSuccess = true;
             dashboardPath = "/dashboard/student";
