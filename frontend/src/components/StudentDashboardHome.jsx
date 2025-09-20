@@ -1,8 +1,11 @@
 // src/components/StudentDashboardHome.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/StudentDashboardHome.css";
 
 const StudentDashboardHome = () => {
+    const navigate = useNavigate();
+
     const student = {
         name: localStorage.getItem("username") || "Student",
         gpa: 8.7,
@@ -31,7 +34,6 @@ const StudentDashboardHome = () => {
         ],
     };
 
-    // Mess info
     const messInfo = {
         name: "Mess 1",
         type: "Central Mess",
@@ -70,14 +72,34 @@ const StudentDashboardHome = () => {
 
             {/* Quick Stats */}
             <div className="quick-stats">
-                <div className="stats-card">Courses Enrolled: {student.coursesEnrolled}</div>
-                <div className="stats-card">Assignments Due: {student.assignmentsDue}</div>
-                <div className="stats-card">Attendance: {student.attendance}%</div>
-                <div className="stats-card">Branch: {student.branch}</div>
+                <div
+                    className="stats-card clickable"
+                    onClick={() => navigate("/dashboard/student/courses")}
+                >
+                    Courses Enrolled: {student.coursesEnrolled}
+                </div>
+                <div
+                    className="stats-card clickable"
+                    onClick={() => navigate("/dashboard/student/assignments")}
+                >
+                    Assignments Due: {student.assignmentsDue}
+                </div>
+                <div
+                    className="stats-card clickable"
+                    onClick={() => navigate("/dashboard/student/attendance")}
+                >
+                    Attendance: {student.attendance}%
+                </div>
+                <div className="stats-card">
+                    Branch: {student.branch}
+                </div>
             </div>
 
             {/* Upcoming Deadlines */}
-            <div className="widget upcoming-deadlines">
+            <div
+                className="widget upcoming-deadlines clickable"
+                onClick={() => navigate("/dashboard/student/assignments")}
+            >
                 <h3>Upcoming Deadlines</h3>
                 <ul>
                     {student.upcomingAssignments.map((a, idx) => (
@@ -89,7 +111,10 @@ const StudentDashboardHome = () => {
             </div>
 
             {/* Today's Timetable */}
-            <div className="widget todays-timetable">
+            <div
+                className="widget todays-timetable clickable"
+                onClick={() => navigate("/dashboard/student/timetable")}
+            >
                 <h3>Today's Timetable</h3>
                 <ul>
                     {student.todaysClasses.map((cls, idx) => (
@@ -101,7 +126,10 @@ const StudentDashboardHome = () => {
             </div>
 
             {/* Recent Announcements */}
-            <div className="widget recent-announcements">
+            <div
+                className="widget recent-announcements clickable"
+                onClick={() => navigate("/dashboard/student/announcements")}
+            >
                 <h3>Recent Announcements</h3>
                 <ul>
                     {student.announcements.map((ann, idx) => (
@@ -113,7 +141,10 @@ const StudentDashboardHome = () => {
             </div>
 
             {/* Attendance Summary */}
-            <div className="widget attendance-summary">
+            <div
+                className="widget attendance-summary clickable"
+                onClick={() => navigate("/dashboard/student/attendance")}
+            >
                 <h3>Attendance Summary</h3>
                 <div className="progress-bar">
                     <div
@@ -125,7 +156,10 @@ const StudentDashboardHome = () => {
             </div>
 
             {/* Performance Snapshot */}
-            <div className="widget performance-snapshot">
+            <div
+                className="widget performance-snapshot clickable"
+                onClick={() => navigate("/dashboard/student/results")}
+            >
                 <h3>Performance Snapshot</h3>
                 <p>GPA: {student.gpa}</p>
                 <p>Next Assignment: {student.nextAssignment}</p>

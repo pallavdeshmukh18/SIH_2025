@@ -1,4 +1,3 @@
-// src/pages/StudentDashboard.jsx
 import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
@@ -17,11 +16,13 @@ import {
     FaComments,
     FaUserCheck,
     FaRobot,
-    FaBookOpen
+    FaBookOpen,
+    FaMoon,
+    FaSun
 } from "react-icons/fa";
 
 // --- Page Components ---
-import StudentDashboardHome from "../components/StudentDashboardHome"; // import correctly
+import StudentDashboardHome from "../components/StudentDashboardHome";
 
 const Courses = () => <h2>Your Courses</h2>;
 const Timetable = () => <h2>Your Timetable</h2>;
@@ -41,7 +42,7 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
     return (
         <NavLink
             to={to}
-            end={exact} // only exact match if specified
+            end={exact}
             className={({ isActive }) =>
                 isActive ? "active-link" : "sidebar-link"
             }
@@ -55,6 +56,7 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
 function StudentDashboard() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [studentName, setStudentName] = useState("Student");
+    const [darkMode, setDarkMode] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -64,9 +66,17 @@ function StudentDashboard() {
                 storedUsername.charAt(0).toUpperCase() + storedUsername.slice(1)
             );
         }
+
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme) setDarkMode(storedTheme === "dark");
     }, []);
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+
+    const toggleTheme = () => {
+        setDarkMode(!darkMode);
+        localStorage.setItem("theme", !darkMode ? "dark" : "light");
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("userToken");
@@ -76,7 +86,7 @@ function StudentDashboard() {
     };
 
     return (
-        <div className="student-dashboard">
+        <div className={`student-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
             {/* Sidebar */}
             <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
                 <div className="logo">{!isCollapsed && `Hello, ${studentName}!`}</div>
@@ -205,11 +215,14 @@ function StudentDashboard() {
                         <FaBars />
                     </button>
                     <h1>Student Portal</h1>
+                    {/* Dark/Light Mode Toggle */}
+                    <button className="theme-btn" onClick={toggleTheme}>
+                        {darkMode ? <FaSun /> : <FaMoon />}
+                    </button>
                 </div>
 
                 <div className="content">
                     <Routes>
-                        {/* Use the separate StudentDashboardHome component directly */}
                         <Route index element={<StudentDashboardHome />} />
                         <Route path="courses" element={<Courses />} />
                         <Route path="timetable" element={<Timetable />} />

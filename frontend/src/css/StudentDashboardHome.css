@@ -238,3 +238,13 @@
         font-size: 1.5rem;
     }
 }
+
+.clickable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clickable:hover {
+    background-color: #d8d8d9;
+    transform: translateY(-2px);
+}
