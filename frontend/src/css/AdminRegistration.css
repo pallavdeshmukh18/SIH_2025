@@ -1,0 +1,110 @@
+/* src/css/AdminRegistration.css */
+
+/* Card container */
+.admin-registration.card {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 450px;
+    /* same as student card width */
+    width: 100%;
+    /* responsive width */
+    margin: 50px auto;
+    /* centers the card horizontally */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    /* include padding in width */
+}
+
+/* Form headings */
+.admin-registration h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Success & error messages */
+.success-msg {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.error-msg {
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Form group */
+.admin-registration .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-registration .form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Input and select fields */
+.admin-registration input[type="text"],
+.admin-registration input[type="email"],
+.admin-registration input[type="password"],
+.admin-registration select {
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Focus effect */
+.admin-registration input[type="text"]:focus,
+.admin-registration input[type="email"]:focus,
+.admin-registration input[type="password"]:focus,
+.admin-registration select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Dropdown arrows customization */
+.admin-registration select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><polygon points="0,0 10,0 5,6" fill="%23777"/></svg>') no-repeat right 12px center;
+    background-size: 10px 6px;
+    cursor: pointer;
+}
+
+/* Button styling */
+.admin-registration button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.admin-registration button:hover {
+    background-color: #357ab8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .admin-registration.card {
+        padding: 20px;
+        margin: 30px 15px;
+        /* smaller horizontal margin for mobile */
+    }
+}

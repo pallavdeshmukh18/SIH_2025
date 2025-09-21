@@ -1,0 +1,158 @@
+/* src/css/StudentRegistration.css */
+
+/* Card container */
+.student-registration.card {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form headings */
+.student-registration h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Success & error messages */
+.success-msg {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.error-msg {
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Input and select fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Focus effect */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Dropdown arrows customization */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><polygon points="0,0 10,0 5,6" fill="%23777"/></svg>') no-repeat right 12px center;
+    background-size: 10px 6px;
+    cursor: pointer;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #357ab8;
+    transform: translateY(-2px);
+}
+
+/* Subjects container (checkbox cards) */
+.subjects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Each subject as a card */
+.subject-card {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    max-width: 150px;
+    /* limit width */
+    white-space: normal;
+    /* allow text wrapping */
+    word-break: break-word;
+    /* break long words if necessary */
+}
+
+/* Checkbox spacing */
+.subject-card input {
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+/* Highlight selected subjects */
+.subject-card.selected {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #357ab8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect */
+.subject-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .subjects-container {
+        gap: 6px;
+    }
+
+    .subject-card {
+        padding: 6px 10px;
+        font-size: 13px;
+        max-width: 120px;
+        /* smaller width for mobile */
+    }
+}
