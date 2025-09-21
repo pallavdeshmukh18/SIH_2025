@@ -203,6 +203,7 @@ def register_student():
         conn.rollback()
         return jsonify({"status": "fail", "message": str(e)}), 500
 
+
 @app.route("/api/admin/teacher-registration", methods=["POST"])
 def register_teacher():
     data = request.json
@@ -235,6 +236,7 @@ def register_teacher():
         return jsonify({"status": "fail", "message": str(e)}), 500
 
 # ------------------------------------------------------------------------------
+
 # ------------------------------------------------------------------------------
 
 if __name__ == "__main__":
