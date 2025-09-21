@@ -48,8 +48,7 @@ export default function Login() {
         <div className="login-container">
         <div className="floaty">
             <div className="login-left">
-                <img src="abc.jpg" alt="Super ERP Logo" className="logo" />
-                <h1 className="title">Acad Sync</h1>
+                <img src="../ACADSynC.png" alt="Super ERP Logo" className="logo" />
                 <p className="subtitle">Efficiently manage your academic journey.</p>
 
                 <form onSubmit={handleSubmit} className="form">

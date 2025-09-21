@@ -15,10 +15,10 @@ import StudentDetails from "../components/StudentDetails";
 import TeacherDetails from "../components/TeacherDetails";
 import AdminAnnouncements from "../components/AdminAnnouncements";
 // import AddAnnouncements from "../components/AddAnnouncements";
-// import SalaryDetails from "../components/SalaryDetails";
-// import Fees from "../components/Fees";
+import SalaryDetails from "../components/SalaryDetails";
+import AdminFees from "../components/AdminFees";
 // import AdminAnnouncements from "../components/AdminAnnouncements";
-// import AdminProfile from "../components/AdminProfile";
+import AdminProfile from "../components/AdminProfile";
 
 import {
     FaHome,
@@ -246,6 +246,9 @@ function AdminDashboard() {
                         <Route path="chatbot" element={<ChatBotPage />} />
                         <Route path="teacher-details" element={<TeacherDetails />} />
                         <Route path="add-announcements" element={<AdminAnnouncements />} />
+                        <Route path="salary-details" element={<SalaryDetails />} />
+                        <Route path="fees" element={<AdminFees />} />
+                        <Route path="profile" element={<AdminProfile/>} />
                     </Routes>
                 </div>
             </div>

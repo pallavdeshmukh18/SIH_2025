@@ -1,0 +1,166 @@
+/* src/css/SalaryDetails.css */
+
+.admin-salary-page {
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.admin-salary-page h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.salary-table-wrapper {
+  overflow-x: auto;
+}
+
+.salary-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.salary-table th,
+.salary-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.salary-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Salary amount masking */
+.salary-amount {
+  display: inline-block;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  color: transparent;
+}
+
+.salary-amount::before {
+  content: "XXXXXX";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #333;
+}
+
+.salary-amount:hover::before {
+  content: attr(data-amount);
+}
+
+/* Status colors */
+.salary-status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.salary-status.processed {
+  background-color: #28a745;
+}
+
+.salary-status.pending {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.salary-status.cancelled {
+  background-color: #dc3545;
+}
+
+/* Due Flags */
+.due-flag {
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.due-flag.paid {
+  background-color: #28a745;
+}
+
+.due-flag.pending {
+  background-color: #17a2b8;
+}
+
+.due-flag.due-today {
+  background-color: #ff9800;
+}
+
+.due-flag.overdue {
+  background-color: #dc3545;
+}
+
+.due-flag.declined {
+  background-color: #6c757d;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.action-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.85rem;
+}
+
+.pay-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.pay-btn:hover {
+  background-color: #218838;
+}
+
+.decline-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.decline-btn:hover {
+  background-color: #c82333;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .salary-table th, .salary-table td {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .admin-salary-page {
+    padding: 1rem;
+  }
+
+  .salary-table th, .salary-table td {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+}
