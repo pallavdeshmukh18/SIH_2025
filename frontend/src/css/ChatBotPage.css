@@ -1,42 +1,37 @@
-/* Add this new class to your existing CSS file */
-/* --- You should already have these styles --- */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-    /* Stacks items vertically */
-    align-items: center;
-    /* Centers the button horizontally */
-    gap: 1rem;
-    /* Adds space between textarea and button */
-    margin-bottom: 2rem;
-    /* Adds space below the button */
-}
-
-
+/* --- Page Setup --- */
 .chatbot-page {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 2rem;
+    padding: 3rem 1rem;
     font-family: 'Poppins', sans-serif;
     background-color: #f9fafb;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
+/* --- Container --- */
 .chatbot-container {
     width: 100%;
     max-width: 700px;
     background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.chatbot-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Titles --- */
 .chatbot-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 600;
     color: #111827;
     margin-bottom: 0.5rem;
@@ -45,66 +40,97 @@
 .chatbot-subtitle {
     font-size: 1rem;
     color: #6b7280;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
 }
 
+/* --- Input Group --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* --- Textarea --- */
 .chatbot-textarea {
     width: 100%;
-    min-height: 120px;
-    padding: 1rem;
-    border-radius: 12px;
+    min-height: 130px;
+    padding: 1.25rem;
+    border-radius: 14px;
     border: 1px solid #d1d5db;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     resize: vertical;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
+    background-color: #fdfdfd;
 }
 
 .chatbot-textarea:focus {
     outline: none;
     border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+    background-color: #ffffff;
+    transform: scale(1.01);
 }
 
+/* --- Button --- */
 .chatbot-button {
     background-color: #4f46e5;
     color: #ffffff;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.8rem;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
 
 .chatbot-button:hover:not(:disabled) {
     background-color: #4338ca;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.25);
 }
 
 .chatbot-button:disabled {
     background-color: #a5b4fc;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
+/* --- Answer Area --- */
 .chatbot-answer-area {
     text-align: left;
-    min-height: 50px;
+    min-height: 60px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
+/* --- Answer Card --- */
 .chatbot-answer {
     background-color: #f3f4f6;
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 14px;
+    padding: 1.75rem;
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 0.95rem;
     line-height: 1.6;
     color: #374151;
-    animation: fadeIn 0.5s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease forwards;
 }
 
+.chatbot-answer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Animations --- */
 @keyframes fadeIn {
     from {
         opacity: 0;
