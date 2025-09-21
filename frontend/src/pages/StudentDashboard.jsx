@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
 
+import expandedLogo from "../assets/full.png";
+import collapsedLogo from "../assets/col.png";
+
+
 import StudentDashboardHome from "../components/StudentDashboardHome";
 import ChatBotPage from "../components/ChatBotPage";
 import AttendancePage from "../components/AttendancePage";
@@ -36,7 +40,6 @@ import {
     FaSun
 } from "react-icons/fa";
 
-// Sidebar Link Component
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
     return (
         <NavLink
@@ -45,47 +48,44 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
             className={({ isActive }) => `sidebar-link ${isActive ? "active-link" : ""}`}
             title={isCollapsed ? label : ""}
         >
-            {icon} {!isCollapsed && <span className="link-label">{label}</span>}
+            <span className="icon">{icon}</span>
+            {!isCollapsed && <span className="link-label">{label}</span>}
         </NavLink>
     );
 }
 
 function StudentDashboard() {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [studentName, setStudentName] = useState(""); // empty initially
-    const [darkMode, setDarkMode] = useState(false);
+    const [studentName, setStudentName] = useState("");
+    const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") === "dark");
     const navigate = useNavigate();
 
-    // Fetch student name from backend
     useEffect(() => {
         const fetchStudentName = async () => {
             try {
-                const token = localStorage.getItem("userToken"); // your auth token
+                const token = localStorage.getItem("userToken");
                 const res = await fetch("http://127.0.0.1:5000/api/student/profile", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
                 if (data.status === "success" && data.data.name) {
-                    setStudentName(data.data.name); // set the actual name
+                    setStudentName(data.data.name);
                 } else {
-                    setStudentName("Student"); // fallback
+                    setStudentName("Student");
                 }
             } catch (err) {
                 console.error("Failed to fetch student name:", err);
                 setStudentName("Student");
             }
         };
-
         fetchStudentName();
     }, []);
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
-
     const toggleTheme = () => {
         setDarkMode(!darkMode);
         localStorage.setItem("theme", !darkMode ? "dark" : "light");
     };
-
     const handleLogout = () => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("username");
@@ -97,9 +97,14 @@ function StudentDashboard() {
         <div className={`student-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
             {/* Sidebar */}
             <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-                <div className="logo">
-                    {!isCollapsed && studentName ? `Welcome, ${studentName}!` : ""}
+                <div className="logo" title="AcadSync" id="logop">
+                    <img
+                        src={isCollapsed ? collapsedLogo : expandedLogo}
+                        alt={isCollapsed ? "A" : "AcadSync"}
+                    />
                 </div>
+
+
                 <ul>
                     <li>
                         <SidebarLink

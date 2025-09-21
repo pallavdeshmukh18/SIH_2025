@@ -4,6 +4,8 @@ import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/TeacherDashboard.css";
 
 // Import your components
+import expandedLogo from "../assets/full.png";
+import collapsedLogo from "../assets/col.png";
 import ChatBotPage from "../components/ChatBotPage";
 import TeacherTimetable from "../components/TeacherTimetable";
 import TeacherAssignments from "../components/TeacherAssignments";
@@ -74,7 +76,12 @@ function TeacherDashboard() {
   return (
     <div className={`teacher-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
       <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-        <div className="logo">{!isCollapsed && `Hello, ${teacherName}!`}</div>
+        <div className="logo" title="AcadSync" id="logop">
+          <img
+            src={isCollapsed ? collapsedLogo : expandedLogo}
+            alt={isCollapsed ? "A" : "AcadSync"}
+          />
+        </div>
         <ul>
           <li><SidebarLink to="/dashboard/teacher" icon={<FaHome />} label="Dashboard" isCollapsed={isCollapsed} exact /></li>
           <li><SidebarLink to="/dashboard/teacher/timetable" icon={<FaCalendarAlt />} label="Timetable" isCollapsed={isCollapsed} /></li>
