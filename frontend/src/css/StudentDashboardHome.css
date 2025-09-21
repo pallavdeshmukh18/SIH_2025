@@ -1,250 +1,179 @@
-/* --- src/css/StudentDashboardHome.css --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* --- Import Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* --- Main Dashboard Container & Grid Layout --- */
-.dashboard-home {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    padding: 1.5rem;
-    display: grid;
-    /* Using a 4-column grid for better flexibility on larger screens */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    animation: fadeIn 0.5s ease-in-out;
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --text-color: #333333;
 }
 
-@keyframes fadeIn {
-    from {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-home {
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.welcome-banner h2 {
+    font-size: 1.8rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.welcome-banner p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+/* Profile Card */
+.profile-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.profile-pic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.profile-info h3 {
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* Quick Stats Cards (Small Cards) */
+.quick-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stats-card {
+    flex: 1 1 150px;
+    /* Equal small cards */
+    min-width: 140px;
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px var(--card-shadow);
+    text-align: center;
+    font-weight: 500;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.stats-card.clickable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--card-shadow);
+    cursor: pointer;
+}
+
+/* Big Cards (Widgets) */
+.widget {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--card-shadow);
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease forwards;
+    scroll-margin-top: 20px;
+}
+
+.widget h3 {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.widget ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.widget ul li {
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+/* Attendance Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.progress-bar .progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+/* Scroll Animation Keyframes */
+@keyframes fadeInUp {
+    0% {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
 
-    to {
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* --- Grid Item Spanning --- */
-.welcome-banner,
-.quick-stats {
-    grid-column: 1 / -1;
-    /* Span all 4 columns */
-}
-
-/* Key info widgets take up half the width on large screens */
-.hostel-info,
-.mess-info,
-.upcoming-deadlines,
-.todays-timetable {
-    grid-column: span 2;
-}
-
-/* Smaller widgets can be adjusted as needed, here they take up a quarter */
-.recent-announcements,
-.attendance-summary,
-.performance-snapshot {
-    grid-column: span 2;
-}
-
-
-/* --- Welcome Banner --- */
-.welcome-banner {
-    background: linear-gradient(135deg, #4a90e2, #50e3c2);
-    color: #fff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.welcome-banner h2 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.welcome-banner p {
-    margin: 0.25rem 0 0;
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-/* --- Quick Stats Cards --- */
-.quick-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-}
-
-.stats-card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-left: 4px solid #4a90e2;
-}
-
-.stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* --- General Widget Styling --- */
-.widget {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.widget h3 {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-}
-
-.widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-}
-
-.widget ul li {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 0.95rem;
-}
-
-.widget ul li:last-child {
-    border-bottom: none;
-}
-
-.widget ul li strong {
-    color: #2563eb;
-}
-
-.widget ul li em {
-    color: #555;
-    font-style: normal;
-}
-
-/* --- Styling for NEW Hostel & Mess Info Widgets --- */
-.hostel-info h3::before,
-.mess-info h3::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 0.75rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* SVG icons embedded as data URLs for simplicity */
-.hostel-info h3::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z'/%3E%3C/svg%3E");
-}
-
-.mess-info h3::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a90e2'%3E%3Cpath d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z'/%3E%3C/svg%3E");
-}
-
-.hostel-info p,
-.mess-info p {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    margin: 0;
-    font-size: 0.95rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.hostel-info p:last-of-type,
-.mess-info p:last-of-type {
-    border-bottom: none;
-}
-
-/* --- Attendance Progress Bar --- */
-.attendance-summary .progress-bar {
-    background-color: #e9ecef;
-    border-radius: 20px;
-    height: 12px;
-    overflow: hidden;
-    margin: 1rem 0;
-}
-
-.attendance-summary .progress {
-    height: 100%;
-    background: linear-gradient(90deg, #28a745, #21e6c1);
-    border-radius: 20px;
-    transition: width 0.5s ease-in-out;
-}
-
-/* --- Responsive Design --- */
-/* For medium desktops and large tablets */
-@media (max-width: 1200px) {
-    .dashboard-home {
-        grid-template-columns: repeat(2, 1fr);
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .quick-stats {
+        flex-direction: column;
     }
 
-    /* Make all widgets span full width in 2-column layout */
-    .hostel-info,
-    .mess-info,
-    .upcoming-deadlines,
-    .todays-timetable,
-    .recent-announcements,
-    .attendance-summary,
-    .performance-snapshot {
-        grid-column: span 2;
-    }
-}
-
-/* For small tablets and mobile phones */
-@media (max-width: 768px) {
-    .dashboard-home {
-        grid-template-columns: 1fr;
-        /* Single column layout */
-        padding: 1rem;
-        gap: 1rem;
+    .stats-card {
+        width: 100%;
     }
 
-    /* Reset all spans for single column flow */
-    .welcome-banner,
-    .quick-stats,
-    .hostel-info,
-    .mess-info,
-    .upcoming-deadlines,
-    .todays-timetable,
-    .recent-announcements,
-    .attendance-summary,
-    .performance-snapshot {
-        grid-column: auto;
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .welcome-banner h2 {
-        font-size: 1.5rem;
+    .profile-pic img {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
-}
-
-.clickable {
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.clickable:hover {
-    background-color: #d8d8d9;
-    transform: translateY(-2px);
 }

@@ -6,8 +6,15 @@ import "../css/StudentDashboardHome.css";
 const StudentDashboardHome = () => {
     const navigate = useNavigate();
 
+    const rawUsername = localStorage.getItem("username") || "Teacher";
+    let formattedName = rawUsername
+        .split("@")[0]
+        .split(/[\._]/)[0];
+
+    formattedName = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
+
     const student = {
-        name: localStorage.getItem("username") || "Student",
+        name: formattedName || "Student",
         gpa: 8.7,
         attendance: 92,
         branch: "EXTC",
@@ -52,6 +59,22 @@ const StudentDashboardHome = () => {
             <div className="welcome-banner">
                 <h2>Welcome back, {student.name}!</h2>
                 <p>{todayDate}</p>
+            </div>
+
+            {/* Profile Card */}
+            <div className="profile-card">
+                <div className="profile-pic">
+                    <img
+                        src="https://via.placeholder.com/100"
+                        alt="Profile"
+                    />
+                </div>
+                <div className="profile-info">
+                    <h3>{student.name}</h3>
+                    <p><strong>Branch:</strong> {student.branch}</p>
+                    <p><strong>Hostel:</strong> {student.hostel.name} ({student.hostel.room})</p>
+                    <p><strong>GPA:</strong> {student.gpa}</p>
+                </div>
             </div>
 
             {/* Hostel Info */}

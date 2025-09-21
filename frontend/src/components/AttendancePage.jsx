@@ -10,9 +10,9 @@ function EnhancedAttendancePage() {
         // Mock data for 10 subjects
         const mockData = [
             { subjectId: 1, subjectName: "Mathematics", totalDays: 20, presentDays: 18 },
-            { subjectId: 2, subjectName: "Physics", totalDays: 22, presentDays: 19 },
+            { subjectId: 2, subjectName: "Physics", totalDays: 20, presentDays: 4 },
             { subjectId: 3, subjectName: "Chemistry", totalDays: 18, presentDays: 16 },
-            { subjectId: 4, subjectName: "Computer Science", totalDays: 20, presentDays: 20 },
+            { subjectId: 4, subjectName: "Computer Science", totalDays: 20, presentDays: 14 },
             { subjectId: 5, subjectName: "Biology", totalDays: 21, presentDays: 17 },
             { subjectId: 6, subjectName: "English", totalDays: 20, presentDays: 19 },
             { subjectId: 7, subjectName: "History", totalDays: 19, presentDays: 18 },

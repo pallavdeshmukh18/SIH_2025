@@ -5,18 +5,18 @@ import "../css/TeacherDashboardHome.css";
 
 const TeacherDashboardHome = () => {
     const rawUsername = localStorage.getItem("username") || "Teacher";
-    const nameOnly = rawUsername.split("@")[0]; // take only 'alice'
-    const formattedName = nameOnly
-        .split(/[\._]/) // handle dots or underscores, e.g., alice.smith
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(" "); // 'Alice Smith'
+    let formattedName = rawUsername
+        .split("@")[0]
+        .split(/[\._]/)[0];
+
+    formattedName = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
 
     const navigate = useNavigate();
 
     const teacher = {
         name: formattedName || "Teacher",
         id: "TCH12345",
-        photo: "https://via.placeholder.com/100", // Replace with teacher profile image
+        photo: "./teacher.jpeg", // Replace with teacher profile image
         department: "Electronics & Telecommunication",
         subjects: ["Mathematics", "Physics", "Digital Systems"],
         email: "teacher@example.com",
@@ -58,7 +58,7 @@ const TeacherDashboardHome = () => {
             <div className="widget profile-overview">
                 <h3>Profile Overview</h3>
                 <div className="profile-details">
-                    <img src="/teacher1.jpeg" alt="Teacher" className="profile-photo" />
+                    <img src="../public/teacher1.jpeg" alt="Teacher" className="profile-photo" />
                     <div>
                         <p><strong>Name:</strong> {teacher.name}</p>
                         <p><strong>ID:</strong> {teacher.id}</p>
