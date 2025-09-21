@@ -7,20 +7,10 @@ function StudentRegistration() {
         name: "",
         email: "",
         password: "",
-        hostel: "",
-        room_no: "",
-        mess: "",
-        branch: "",
-        year: "",
     });
 
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
-
-    const hostels = ["Hostel A", "Hostel B", "Hostel C", "Hostel D"];
-    const messes = ["Mess 1", "Mess 2", "Mess 3", "Mess 4"];
-    const branches = ["EXTC", "Computer", "IT", "Mechanical", "Civil", "Electrical"];
-    const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
     const handleChange = (e) => {
         setStudentData({
@@ -53,11 +43,6 @@ function StudentRegistration() {
                     name: "",
                     email: "",
                     password: "",
-                    hostel: "",
-                    room_no: "",
-                    mess: "",
-                    branch: "",
-                    year: "",
                 });
             } else {
                 setError(data.message || "Failed to register student.");
@@ -76,7 +61,7 @@ function StudentRegistration() {
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Name</label>
+                    <label>Username</label>
                     <input
                         type="text"
                         name="name"
@@ -106,57 +91,6 @@ function StudentRegistration() {
                         onChange={handleChange}
                         required
                     />
-                </div>
-
-                <div className="form-group">
-                    <label>Hostel</label>
-                    <select name="hostel" value={studentData.hostel} onChange={handleChange} required>
-                        <option value="">Select Hostel</option>
-                        {hostels.map((hostel) => (
-                            <option key={hostel} value={hostel}>{hostel}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label>Room No</label>
-                    <input
-                        type="text"
-                        name="room_no"
-                        value={studentData.room_no}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Mess</label>
-                    <select name="mess" value={studentData.mess} onChange={handleChange}>
-                        <option value="">Select Mess</option>
-                        {messes.map((mess) => (
-                            <option key={mess} value={mess}>{mess}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label>Branch</label>
-                    <select name="branch" value={studentData.branch} onChange={handleChange} required>
-                        <option value="">Select Branch</option>
-                        {branches.map((branch) => (
-                            <option key={branch} value={branch}>{branch}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group">
-                    <label>Year</label>
-                    <select name="year" value={studentData.year} onChange={handleChange} required>
-                        <option value="">Select Year</option>
-                        {years.map((yr) => (
-                            <option key={yr} value={yr}>{yr}</option>
-                        ))}
-                    </select>
                 </div>
 
                 <button type="submit">Register Student</button>
