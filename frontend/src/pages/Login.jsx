@@ -2,93 +2,110 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
 
-function Login() {
-    const navigate = useNavigate();
-    const [role, setRole] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+export default function Login() {
+  const navigate = useNavigate();
+  const [role, setRole] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
 
-        if (!role) {
-            setError("Please select a role");
-            return;
-        }
+    let loginSuccess = false;
+    let dashboardPath = "";
 
-        try {
-            const response = await fetch("http://127.0.0.1:5000/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: username, password: password, type: role })
-            });
+    if (role === "student" && username === "student" && password === "student") {
+      loginSuccess = true;
+      dashboardPath = "/dashboard/student";
+    } else if (role === "teacher" && username === "teacher" && password === "teacher") {
+      loginSuccess = true;
+      dashboardPath = "/dashboard/teacher";
+    } else if (role === "admin" && username === "admin" && password === "admin") {
+      loginSuccess = true;
+      dashboardPath = "/dashboard/admin";
+    }
 
-            const data = await response.json();
+    if (loginSuccess) {
+      localStorage.setItem("userToken", "a_dummy_auth_token_for_now");
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("username", username);
+      navigate(dashboardPath);
+    } else {
+      setError("Invalid credentials or role selected. Please try again.");
+    }
+  };
 
-            if (data.status === "success") {
-                // Store info in localStorage for ProtectedRoute
-                localStorage.setItem("userToken", "dummy_token_for_now");
-                localStorage.setItem("userRole", role);
-                localStorage.setItem("username", username);
+  return (
+    <div className="login-container">
+      {/* Left Side (75%) */}
+      <div className ="floaty">
+      <div className="login-left">
+        <img src="abc.jpg" alt="Super ERP Logo" className="logo" />
+        <h1 className="title">Acad Sync</h1>
+        <p className="subtitle">Efficiently manage your academic journey.</p>
 
-                // Navigate to respective dashboard
-                if (role === "student") navigate("/dashboard/student");
-                else if (role === "teacher") navigate("/dashboard/teacher");
-                else if (role === "admin") navigate("/dashboard/admin");
-            } else {
-                setError(data.message || "Invalid credentials");
-            }
-        } catch (err) {
-            console.error("Login error:", err);
-            setError("Server error. Please try again later.");
-        }
-    };
-
-    return (
-        <div className="login-page">
-            <div className="login-left">
-                <h1>School ERP Portal</h1>
-                <p>Efficiently manage your academic journey.</p>
-            </div>
-
-            <div className="login-right">
-                <div className="login-container">
-                    <h2>Login</h2>
-
-                    <div className="role-select">
-                        <label>I am a:</label>
-                        <select value={role} onChange={(e) => setRole(e.target.value)} required>
-                            <option value="" disabled>-- Select Role --</option>
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            placeholder="Email"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        {error && <p className="login-error">{error}</p>}
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
-            </div>
+        <div className="input-wrapper">
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+            className="input-field"
+          >
+            <option class="placeholder-text" value="" disabled>
+              -- Select Role --
+            </option>
+            <option class="placeholder-text" value="student">Student</option>
+            <option class="placeholder-text" value="teacher">Teacher</option>
+            <option class="placeholder-text" value="admin">Admin</option>
+          </select>
         </div>
-    );
-}
 
-export default Login;
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            type="text"
+            placeholder="Enter Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="input-field"
+          />
+          <input
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="input-field"
+          />
+
+          {error && <p className="error">{error}</p>}
+
+          <button type="submit" className="submit-btn">
+            Continue
+          </button>
+        </form>
+
+        <p className="terms">
+          By continuing, you agree to our <a href="#">Terms</a> and{" "}
+          <a href="#">Privacy Policy</a>.
+        </p>
+
+      </div>
+      </div>
+
+      {/* Right Side (25%) */}
+      <div className="login-right">
+        <video
+          src="/background1.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="background-video"
+        ></video>
+      </div>
+    </div>
+  );
+}
