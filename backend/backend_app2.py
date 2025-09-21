@@ -203,6 +203,40 @@ def register_student():
         conn.rollback()
         return jsonify({"status": "fail", "message": str(e)}), 500
 
+
+@app.route("/api/admin/teacher-registration", methods=["POST"])
+def register_teacher():
+    data = request.json
+    name = data.get("name")
+    email = data.get("email")
+    password = data.get("password")
+
+    # Validate required fields
+    if not (name and email and password):
+        return jsonify({"status": "fail", "message": "Name, email, and password are required"}), 400
+
+    # Hash the password
+    hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO teachers (name, email, password) VALUES (%s, %s, %s)",
+                (name, email, hashed_pw)
+            )
+            conn.commit()
+        return jsonify({"status": "success", "message": "Teacher registered successfully"}), 201
+
+    except psycopg2.errors.UniqueViolation:
+        conn.rollback()
+        return jsonify({"status": "fail", "message": "Email already exists"}), 409
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"status": "fail", "message": str(e)}), 500
+
+# ------------------------------------------------------------------------------
+
 # ------------------------------------------------------------------------------
 
 if __name__ == "__main__":
