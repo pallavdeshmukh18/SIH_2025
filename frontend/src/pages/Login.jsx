@@ -46,6 +46,7 @@ export default function Login() {
 
     return (
         <div className="login-container">
+        <div className="floaty">
             <div className="login-left">
                 <img src="abc.jpg" alt="Super ERP Logo" className="logo" />
                 <h1 className="title">Acad Sync</h1>
@@ -96,6 +97,7 @@ export default function Login() {
                     <a href="#">Privacy Policy</a>.
                 </p>
             </div>
+        </div>
 
             <div className="login-right">
                 <video
