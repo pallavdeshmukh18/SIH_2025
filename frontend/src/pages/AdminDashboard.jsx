@@ -12,7 +12,8 @@ import StudentRegistration from "../components/StudentRegistration";
 import AdminRegistration from "../components/AdminRegistration";
 // import AddEntity from "../components/AddEntity";
 import StudentDetails from "../components/StudentDetails";
-// import TeacherDetails from "../components/TeacherDetails";
+import TeacherDetails from "../components/TeacherDetails";
+import AdminAnnouncements from "../components/AdminAnnouncements";
 // import AddAnnouncements from "../components/AddAnnouncements";
 // import SalaryDetails from "../components/SalaryDetails";
 // import Fees from "../components/Fees";
@@ -175,7 +176,7 @@ function AdminDashboard() {
                         <SidebarLink
                             to="/dashboard/admin/add-announcements"
                             icon={<FaBullhorn />}
-                            label="Add Announcements"
+                            label="Announcements"
                             isCollapsed={isCollapsed}
                         />
                     </li>
@@ -243,6 +244,8 @@ function AdminDashboard() {
                         <Route path="admin-registration" element={<AdminRegistration />} />
                         <Route path="student-details" element={<StudentDetails />} />
                         <Route path="chatbot" element={<ChatBotPage />} />
+                        <Route path="teacher-details" element={<TeacherDetails />} />
+                        <Route path="add-announcements" element={<AdminAnnouncements />} />
                     </Routes>
                 </div>
             </div>

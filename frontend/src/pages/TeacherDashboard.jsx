@@ -16,6 +16,7 @@ import DiscussionsPage from "../components/DiscussionsPage";
 import TeacherAnnouncements from "../components/TeacherAnnouncements";
 import TeacherProfile from "../components/TeacherProfile";
 import TeacherDashboardHome from "../components/TeacherDashboardHome";
+
 const TeacherExamination = () => <h2>Examination Details</h2>; // Placeholder component
 
 import {
