@@ -25,6 +25,23 @@
     margin-bottom: 10px;
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    /* ✅ stretch same as button */
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+    /* ✅ keeps padding inside width */
+}
+
+
 .error-msg {
     color: #d32f2f;
     text-align: center;

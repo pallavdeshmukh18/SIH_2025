@@ -875,17 +875,68 @@ body {
     }
 }
 
-#logop {
+/* Normal sidebar (expanded) */
+.sidebar #logop {
+    width: calc(100% - 1rem) !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    width: 100%;
-    max-height: 90px;
+    padding: 0px !important;
+    margin: 0 auto;
+    height: auto !important;
 }
 
-#logop img {
-    width: 100%;
-    height: 100%;
+/* When sidebar is collapsed */
+/* Collapsed sidebar logo container */
+.sidebar.collapsed #logop {
+    width: 100px;
+    /* sidebar width */
+    height: 80px;
+    /* give it a fixed height */
+    display: flex;
+    align-items: center;
+    /* vertical centering */
+    justify-content: left;
+    /* horizontal centering */
+    margin: 0 auto;
+    /* center block inside sidebar */
+    /* border: 2px solid black; */
+    /* thinner border if needed */
+    box-sizing: border-box;
+}
+
+#sideb.collapsed #logop {
+    /* styles when sidebar is collapsed */
+    width: 100px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    /* border: 2px solid black; */
+    box-sizing: border-box;
+}
+
+#sideb.collapsed #logop img {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
+    display: block;
+}
+
+
+/* Collapsed sidebar logo image */
+.sidebar.collapsed #logop img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 1px !important;
+    /* display: block; */
+    /* removes inline spacing issues */
+}
+
+/* Sidebar icons always black */
+.sidebar ul li svg {
+    color: black !important;
+    fill: black !important;
 }
