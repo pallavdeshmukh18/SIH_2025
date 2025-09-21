@@ -11,7 +11,7 @@ import TeacherRegistration from "../components/TeacherRegistration";
 import StudentRegistration from "../components/StudentRegistration";
 import AdminRegistration from "../components/AdminRegistration";
 // import AddEntity from "../components/AddEntity";
-// import StudentDetails from "../components/StudentDetails";
+import StudentDetails from "../components/StudentDetails";
 // import TeacherDetails from "../components/TeacherDetails";
 // import AddAnnouncements from "../components/AddAnnouncements";
 // import SalaryDetails from "../components/SalaryDetails";
@@ -241,6 +241,7 @@ function AdminDashboard() {
                         <Route path="teacher-registration" element={<TeacherRegistration />} />
                         <Route path="student-registration" element={<StudentRegistration />} />
                         <Route path="admin-registration" element={<AdminRegistration />} />
+                        <Route path="student-details" element={<StudentDetails />} />
                         <Route path="chatbot" element={<ChatBotPage />} />
                     </Routes>
                 </div>
