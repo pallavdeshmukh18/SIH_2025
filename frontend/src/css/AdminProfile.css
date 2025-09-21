@@ -1,0 +1,96 @@
+/* src/css/AdminProfile.css */
+
+.admin-profile-page {
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.profile-heading {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.profile-section {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-title {
+  margin-bottom: 1rem;
+  color: #007bff;
+  font-size: 1.3rem;
+}
+
+/* Basic details */
+.profile-basic {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #007bff;
+}
+
+.profile-basic-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.profile-basic-info p {
+  margin: 0.4rem 0;
+  color: #333;
+}
+
+.profile-signature {
+  text-align: center;
+  min-width: 150px;
+}
+
+.signature-img {
+  width: 120px;
+  margin-top: 0.5rem;
+}
+
+/* Employment */
+.profile-employment p {
+  margin: 0.4rem 0;
+  color: #333;
+}
+
+/* Responsibilities */
+.profile-responsibilities p {
+  margin: 0.4rem 0;
+  color: #333;
+}
+
+.responsibilities-list,
+.achievements-list {
+  list-style: square;
+  margin-left: 1.5rem;
+  color: #555;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .profile-basic {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-basic-info {
+    text-align: center;
+  }
+}
