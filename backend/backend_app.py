@@ -12,13 +12,15 @@ app.secret_key = "supersecretkey"  # Needed for OTP session storage
 
 # Connect to your database
 conn = psycopg2.connect(
-    host="localhost",
+    host="192.168.1.40",
     database="sih_db",
-    user="anmol",
+    user="postgres",
     password="SIHACKATHON"
 )
 
 # LOGIN ROUTE (unchanged)
+
+
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
@@ -40,7 +42,8 @@ def login():
     try:
         # Use a fresh cursor for each request
         with conn.cursor() as cur:
-            cur.execute(f"SELECT password, name FROM {table} WHERE email = %s", (email,))
+            cur.execute(
+                f"SELECT password, name FROM {table} WHERE email = %s", (email,))
             result = cur.fetchone()
     except Exception as e:
         # Catch DB errors
@@ -68,6 +71,8 @@ OTP_EMAILS = {
 }
 
 # Function to send OTP
+
+
 def send_otp(user_role):
     otp = str(random.randint(100000, 999999))  # 6-digit OTP
     target_email = OTP_EMAILS.get(user_role)
@@ -79,12 +84,15 @@ def send_otp(user_role):
 
     with smtplib.SMTP('smtp.gmail.com', 587) as server:
         server.starttls()
-        server.login('yourapp@example.com', 'your_app_password')  # Use App Password
+        # Use App Password
+        server.login('yourapp@example.com', 'your_app_password')
         server.sendmail(msg['From'], [msg['To']], msg.as_string())
 
     return otp
 
 # Route to request password reset
+
+
 @app.route("/request-reset", methods=["POST"])
 def request_reset():
     data = request.json
@@ -121,6 +129,8 @@ def request_reset():
     return jsonify({"status": "success", "message": f"OTP sent to {OTP_EMAILS[role]}"}), 200
 
 # Route to verify OTP and change password
+
+
 @app.route("/verify-otp", methods=["POST"])
 def verify_otp():
     data = request.json
@@ -143,7 +153,8 @@ def verify_otp():
 
     try:
         with conn.cursor() as cur:
-            cur.execute(f"UPDATE {table} SET password=%s WHERE email=%s", (hashed_pw, email))
+            cur.execute(
+                f"UPDATE {table} SET password=%s WHERE email=%s", (hashed_pw, email))
             conn.commit()
     except Exception as e:
         return jsonify({"status": "fail", "message": str(e)}), 500
@@ -156,6 +167,7 @@ def verify_otp():
     return jsonify({"status": "success", "message": "Password updated successfully"}), 200
 
 # ------------------ PASSWORD RESET CHANGES END ------------------
+
 
 if __name__ == "__main__":
     app.run(debug=True)
