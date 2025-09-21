@@ -236,6 +236,25 @@ def register_teacher():
         return jsonify({"status": "fail", "message": str(e)}), 500
 
 # ------------------------------------------------------------------------------
+#  - -  -     -  - ###STUDENT INFO#----------------------------
+@app.route("/api/admin/students", methods=["GET"])
+def get_students():
+    try:
+        # (Optional) - check admin authentication here later
+        with conn.cursor() as cur:
+            cur.execute("SELECT  name, email FROM students ORDER BY id ASC;")
+            rows = cur.fetchall()
+
+        students = [
+            { "username": row[0], "email": row[1]}
+            for row in rows
+        ]
+
+        return jsonify({"students": students}), 200
+
+    except Exception as e:
+        print("Error fetching students:", e)
+        return jsonify({"message": "Failed to fetch students."}), 500
 
 # ------------------------------------------------------------------------------
 
