@@ -18,9 +18,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 30px;
   box-sizing: border-box;
-  position: relative;
+  
   /* to keep it above video */
   z-index: 5;
 }
