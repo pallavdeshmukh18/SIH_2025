@@ -1,76 +1,106 @@
-// src/pages/StudentProfile.jsx
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "../css/StudentProfile.css";
 
-function StudentProfile() {
+export default function StudentProfile() {
+    // initial student data
     const [student, setStudent] = useState({
-        name: "",
-        rollNumber: "EXTC1234",
-        email: "",
-        contact: "",
+        name: "Anmol Katiyar",
+        roll: "EXTC1234",
+        email: "anmol.katiyar24@spit.ac.in",
+        phone: "9999999999",
         course: "Electronics and Telecommunication",
-        profilePic: "",
-        parents: {
-            father: { name: "Mr. Deshmukh", contact: "9999999999" },
-            mother: { name: "Mrs. Deshmukh", contact: "8888888888" },
-        },
-        idCard: { idNumber: "STU2025001", issueDate: "2025-06-01" },
-        previousSchool: { name: "ABC High School", board: "CBSE", yearOfPassing: 2023 }
+        year: "3rd Year",
+        father: "Mr. Katiyar",
+        fatherContact: "9999999999",
+        mother: "Mrs. Katiyar",
+        motherContact: "8888888888",
+        address: "Andheri West, Mumbai",
+        bloodGroup: "B+",
     });
 
-    useEffect(() => {
-        const storedName = localStorage.getItem("username") || "Student";
-        const storedEmail = localStorage.getItem("email") || "student@example.com";
-        const storedContact = localStorage.getItem("contact") || "0000000000";
+    // toggle edit mode
+    const [isEditing, setIsEditing] = useState(false);
 
-        setStudent(prev => ({
-            ...prev,
-            name: storedName.charAt(0).toUpperCase() + storedName.slice(1),
-            email: storedEmail,
-            contact: storedContact
-        }));
-    }, []);
+    // update form values (only for editable fields)
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setStudent({ ...student, [name]: value });
+    };
 
-    const handleEdit = () => {
-        alert("Profile edit functionality can be implemented here.");
+    // toggle edit / save
+    const handleEditSave = () => {
+        setIsEditing(!isEditing);
     };
 
     return (
-        <div className="student-profile-page">
-            <h2>My Profile</h2>
+        <div className="profile-container">
+            <h2 className="profile-title">My Profile</h2>
 
             <div className="profile-card">
-                {student.profilePic ? (
-                    <img src={student.profilePic} alt="Profile" className="profile-pic" />
-                ) : (
-                    <div className="profile-pic-placeholder">{student.name.charAt(0)}</div>
-                )}
+                <div className="profile-avatar">
+                    {student.name.charAt(0).toUpperCase()}
+                </div>
 
-                <div className="profile-details">
-                    <p><strong>Name:</strong> {student.name}</p>
-                    <p><strong>Roll Number:</strong> {student.rollNumber}</p>
-                    <p><strong>Email:</strong> {student.email}</p>
-                    <p><strong>Contact:</strong> {student.contact}</p>
-                    <p><strong>Course:</strong> {student.course}</p>
+                <div className="profile-info">
+                    <div className="info-row">
+                        <p><strong>Roll Number:</strong> {student.roll}</p>
+                        <p>
+                            <strong>Email:</strong>{" "}
+                            {isEditing ? (
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={student.email}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                student.email
+                            )}
+                        </p>
+                    </div>
 
-                    <h3>Parent / Guardian Info</h3>
-                    <p><strong>Father:</strong> {student.parents.father.name} ({student.parents.father.contact})</p>
-                    <p><strong>Mother:</strong> {student.parents.mother.name} ({student.parents.mother.contact})</p>
+                    <div className="info-row">
+                        <p>
+                            <strong>Name:</strong>{" "}
+                            {isEditing ? (
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={student.name}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                student.name
+                            )}
+                        </p>
+                        <p><strong>Phone:</strong> {student.phone}</p>
+                    </div>
 
-                    <h3>ID Card Details</h3>
-                    <p><strong>ID Number:</strong> {student.idCard.idNumber}</p>
-                    <p><strong>Issue Date:</strong> {student.idCard.issueDate}</p>
+                    <div className="info-row">
+                        <p><strong>Course:</strong> {student.course}</p>
+                        <p><strong>Year:</strong> {student.year}</p>
+                    </div>
 
-                    <h3>Previous School</h3>
-                    <p><strong>School Name:</strong> {student.previousSchool.name}</p>
-                    <p><strong>Board:</strong> {student.previousSchool.board}</p>
-                    <p><strong>Year of Passing:</strong> {student.previousSchool.yearOfPassing}</p>
+                    <div className="info-row">
+                        <p><strong>Father:</strong> {student.father}</p>
+                        <p><strong>Father Contact:</strong> {student.fatherContact}</p>
+                    </div>
+
+                    <div className="info-row">
+                        <p><strong>Mother:</strong> {student.mother}</p>
+                        <p><strong>Mother Contact:</strong> {student.motherContact}</p>
+                    </div>
+
+                    <div className="info-row">
+                        <p><strong>Address:</strong> {student.address}</p>
+                        <p><strong>Blood Group:</strong> {student.bloodGroup}</p>
+                    </div>
                 </div>
             </div>
 
-            <button className="edit-profile-btn" onClick={handleEdit}>Edit Profile</button>
+            <button className="edit-btn" onClick={handleEditSave}>
+                {isEditing ? "Save Profile" : "Edit Profile"}
+            </button>
         </div>
     );
 }
-
-export default StudentProfile;
