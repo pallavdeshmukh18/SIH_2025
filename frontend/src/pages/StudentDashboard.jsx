@@ -1,11 +1,13 @@
+// src/pages/StudentDashboard.jsx
 import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/StudentDashboard.css";
 
+// Logos
 import expandedLogo from "../assets/full.png";
 import collapsedLogo from "../assets/col.png";
 
-
+// Components
 import StudentDashboardHome from "../components/StudentDashboardHome";
 import ChatBotPage from "../components/ChatBotPage";
 import AttendancePage from "../components/AttendancePage";
@@ -20,6 +22,7 @@ import Fees from "../components/Fees";
 import StudentAnnouncements from "../components/StudentAnnouncements";
 import StudentProfile from "../components/StudentProfile";
 
+// Icons
 import {
     FaHome,
     FaBook,
@@ -37,15 +40,18 @@ import {
     FaRobot,
     FaBookOpen,
     FaMoon,
-    FaSun
+    FaSun,
 } from "react-icons/fa";
 
+// Sidebar Link Component
 function SidebarLink({ to, icon, label, isCollapsed, exact }) {
     return (
         <NavLink
             to={to}
             end={exact}
-            className={({ isActive }) => `sidebar-link ${isActive ? "active-link" : ""}`}
+            className={({ isActive }) =>
+                `sidebar-link ${isActive ? "active-link" : ""}`
+            }
             title={isCollapsed ? label : ""}
         >
             <span className="icon">{icon}</span>
@@ -57,7 +63,9 @@ function SidebarLink({ to, icon, label, isCollapsed, exact }) {
 function StudentDashboard() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [studentName, setStudentName] = useState("");
-    const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") === "dark");
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+    );
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -82,10 +90,12 @@ function StudentDashboard() {
     }, []);
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+
     const toggleTheme = () => {
         setDarkMode(!darkMode);
         localStorage.setItem("theme", !darkMode ? "dark" : "light");
     };
+
     const handleLogout = () => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("username");
@@ -94,16 +104,17 @@ function StudentDashboard() {
     };
 
     return (
-        <div className={`student-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
+        <div
+            className={`student-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}
+        >
             {/* Sidebar */}
-            <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-                <div className="logo" title="AcadSync" id="logop">
+            <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`} id="sideb">
+                <div className="logo" id="logop" title="AcadSync">
                     <img
                         src={isCollapsed ? collapsedLogo : expandedLogo}
                         alt={isCollapsed ? "A" : "AcadSync"}
                     />
                 </div>
-
 
                 <ul>
                     <li>
@@ -217,7 +228,8 @@ function StudentDashboard() {
                             onClick={handleLogout}
                             title={isCollapsed ? "Logout" : ""}
                         >
-                            <FaSignOutAlt /> {!isCollapsed && <span className="link-label">Logout</span>}
+                            <FaSignOutAlt />{" "}
+                            {!isCollapsed && <span className="link-label">Logout</span>}
                         </button>
                     </li>
                 </ul>

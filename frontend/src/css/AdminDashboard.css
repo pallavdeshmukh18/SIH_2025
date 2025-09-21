@@ -212,3 +212,37 @@ html {
         margin-left: 0;
     }
 }
+
+.sidebar #logop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px !important;
+    margin: 0 auto;
+    height: auto !important;
+
+}
+
+/* When sidebar is collapsed */
+.sidebar.collapsed #logop {
+    width: 60px;
+    /* match collapsed sidebar width */
+    display: flex;
+    /* ensure flex works */
+    align-items: center;
+    /* vertical centering */
+    justify-content: left;
+    /* horizontal centering */
+    margin: 0 auto;
+    padding-left: 1rem !important;
+    /* center inside sidebar */
+    /* border: 10px solid black; */
+}
+
+.sidebar.collapsed #logop img {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+    /* keep aspect ratio */
+}

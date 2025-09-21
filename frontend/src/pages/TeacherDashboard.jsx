@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/TeacherDashboard.css";
 
+
+
 // Import your components
 import expandedLogo from "../assets/full.png";
 import collapsedLogo from "../assets/col.png";
@@ -75,9 +77,12 @@ function TeacherDashboard() {
   };
 
   return (
-    <div className={`teacher-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
+    <div
+      className={`teacher-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}
+    >
+      {/* Sidebar */}
       <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-        <div className="logo" title="AcadSync" id="logop">
+        <div className="logo" id="logop" title="AcadSync">
           <img
             src={isCollapsed ? collapsedLogo : expandedLogo}
             alt={isCollapsed ? "A" : "AcadSync"}

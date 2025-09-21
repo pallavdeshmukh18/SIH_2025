@@ -3,21 +3,20 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import "../css/AdminDashboard.css";
 
+// Logos
+import expandedLogo from "../assets/full.png";
+import collapsedLogo from "../assets/col.png";
+
 import AdminDashboardHome from "../components/AdminDashboardHome";
 import ChatBotPage from "../components/ChatBotPage";
-// import AttendancePage from "../components/AttendancePage";
-// import DiscussionsPage from "../components/DiscussionsPage";
 import TeacherRegistration from "../components/TeacherRegistration";
 import StudentRegistration from "../components/StudentRegistration";
 import AdminRegistration from "../components/AdminRegistration";
-// import AddEntity from "../components/AddEntity";
 import StudentDetails from "../components/StudentDetails";
 import TeacherDetails from "../components/TeacherDetails";
 import AdminAnnouncements from "../components/AdminAnnouncements";
-// import AddAnnouncements from "../components/AddAnnouncements";
 import SalaryDetails from "../components/SalaryDetails";
 import AdminFees from "../components/AdminFees";
-// import AdminAnnouncements from "../components/AdminAnnouncements";
 import AdminProfile from "../components/AdminProfile";
 
 import {
@@ -111,8 +110,11 @@ function AdminDashboard() {
         <div className={`admin-dashboard ${darkMode ? "dark-mode" : "light-mode"}`}>
             {/* Sidebar */}
             <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-                <div className="logo">
-                    {!isCollapsed && adminName ? `Welcome, ${adminName}!` : ""}
+                <div className="logo" id="logop" title="AcadSync">
+                    <img
+                        src={isCollapsed ? collapsedLogo : expandedLogo}
+                        alt={isCollapsed ? "A" : "AcadSync"}
+                    />
                 </div>
                 <ul>
                     <li>
@@ -248,7 +250,7 @@ function AdminDashboard() {
                         <Route path="add-announcements" element={<AdminAnnouncements />} />
                         <Route path="salary-details" element={<SalaryDetails />} />
                         <Route path="fees" element={<AdminFees />} />
-                        <Route path="profile" element={<AdminProfile/>} />
+                        <Route path="profile" element={<AdminProfile />} />
                     </Routes>
                 </div>
             </div>
